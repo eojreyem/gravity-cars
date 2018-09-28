@@ -19,10 +19,10 @@ beam.watch((err, value) => {
     throw err;
   }
   var timeNow = (new Date()).getTime();
-  timeDiff = timeNow - lastTime;
-  console.log("Time since last trigger: "+ timeDiff);
+  var timeDiff = timeNow - lastTime;
+  console.log("Time since last trigger: " + timeDiff);
   led.writeSync(value);
-  var lastTime = timeNow;
+  lastTime = timeNow;
 });
 
 process.on('SIGINT', function () { //#F
