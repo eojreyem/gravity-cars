@@ -2,7 +2,9 @@ var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
   led = new Gpio(4, 'out'), //#B
-  beam = new Gpio(17, 'in', 'both');
+  beam = new Gpio(17, 'in', 'rising');
+
+var lastTime = 0;
 //  interval;
 
 // interval = setInterval(function () { //#C
@@ -17,8 +19,9 @@ beam.watch((err, value) => {
     throw err;
   }
   var timeNow = (new Date()).getTime();
-  console.log("Changed LED state to: " + value +" @ "+ timeNow);
+  console.log("Time since last trigger: "+ (timeNow-lastTime));
   led.writeSync(value);
+  var lastTime = timeNow;
 });
 
 process.on('SIGINT', function () { //#F
