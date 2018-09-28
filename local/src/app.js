@@ -16,7 +16,8 @@ beam.watch((err, value) => {
   if (err) {
     throw err;
   }
-  console.log("Changed LED state to: " + value);
+  var timeNow = (new Date()).getTime();
+  console.log("Changed LED state to: " + value " @ " timeNow);
   led.writeSync(value);
 });
 
