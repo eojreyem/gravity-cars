@@ -12,7 +12,7 @@ var Gpio = onoff.Gpio,
 //   });
 // }, 2000);
 
-button.watch((err, value) => {
+beam.watch((err, value) => {
   if (err) {
     throw err;
   }
