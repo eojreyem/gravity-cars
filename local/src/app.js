@@ -3,7 +3,7 @@ var onoff = require('onoff'); //#A
 var Gpio = onoff.Gpio,
   led = new Gpio(4, 'out'), //#B
   beam = new Gpio(17, 'in', 'both');
-  interval;
+//  interval;
 
 // interval = setInterval(function () { //#C
 //   var value = (led.readSync() + 1) % 2; //#D
