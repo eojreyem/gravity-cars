@@ -2,14 +2,22 @@ var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
   led = new Gpio(4, 'out'), //#B
+  beam = new Gpio(17, 'in',)
   interval;
 
-interval = setInterval(function () { //#C
-  var value = (led.readSync() + 1) % 2; //#D
-  led.write(value, function() { //#E
-    console.log("Changed LED state to: " + value);
-  });
-}, 2000);
+// interval = setInterval(function () { //#C
+//   var value = (led.readSync() + 1) % 2; //#D
+//   led.write(value, function() { //#E
+//     console.log("Changed LED state to: " + value);
+//   });
+// }, 2000);
+
+button.watch((err, value) => {
+  if (err) {
+    throw err;
+  }
+  led.writeSync(value);
+});
 
 process.on('SIGINT', function () { //#F
   clearInterval(interval);
