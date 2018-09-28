@@ -2,7 +2,7 @@ var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
   led = new Gpio(4, 'out'), //#B
-  beam = new Gpio(17, 'in',)
+  beam = new Gpio(17, 'in', 'both');
   interval;
 
 // interval = setInterval(function () { //#C
@@ -16,6 +16,7 @@ button.watch((err, value) => {
   if (err) {
     throw err;
   }
+  console.log("Changed LED state to: " + value);
   led.writeSync(value);
 });
 
