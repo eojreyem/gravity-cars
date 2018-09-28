@@ -1,28 +1,48 @@
-var onoff = require('onoff'); //#A
+'use strict';
 
-var Gpio = onoff.Gpio,
-  led = new Gpio(4, 'out'), //#B
-  interval;
+var remote = require('electron').remote;
 
-interval = setInterval(function () { //#C
-  var value = (led.readSync() + 1) % 2; //#D
-  led.write(value, function() { //#E
-    console.log("Changed LED state to: " + value);
-  });
-}, 2000);
+var process = remote.process;
 
-process.on('SIGINT', function () { //#F
-  clearInterval(interval);
-  led.writeSync(0); //#G
-  led.unexport();
-  console.log('Bye, bye!');
-  process.exit();
+//remote.getCurrentWindow().closeDevTools();
+
+var obtains = [
+  'serialport',
+];
+
+obtain(obtains, (drivelist, monitor)=> {
+
+  exports.app = {};
+
+  var sent = false;
+
+  var data = [];
+
+  var fadeInt;
+  var dir = 1;
+  var val = 0;
+
+  exports.app.start = ()=> {
+
+    console.log('started');
+
+    document.onkeypress = (e)=> {
+      //if (e.key == ' ') console.log('Space pressed'), hardware.digitalWrite(13, 1);
+    };
+
+    document.onkeyup = (e)=> {
+      if (e.which == 27) {
+        var electron = require('electron');
+        process.kill(process.pid, 'SIGINT');
+      } else if (e.which == 73 && e.getModifierState('Control') &&  e.getModifierState('Shift')) {
+        remote.getCurrentWindow().toggleDevTools();
+      }
+    };
+
+    process.on('SIGINT', ()=> {
+      process.nextTick(function () { process.exit(0); });
+    });
+  };
+
+  provide(exports);
 });
-
-// #A Import the onoff library
-// #B Initialize pin 4 to be an output pin
-// #C This interval will be called every 2 seconds
-// #D Synchronously read the value of pin 4 and transform 1 to 0 or 0 to 1
-// #E Asynchronously write the new value to pin 4
-// #F Listen to the event triggered on CTRL+C
-// #G Cleanly close the GPIO pin before exiting
