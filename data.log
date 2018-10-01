@@ -1,0 +1,29 @@
+/home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188 Electron Security Warning (Insecure Content-Security-Policy) This renderer process has either no Content Security Policy set or a policy with "unsafe-eval" enabled. This exposes users of this app to unnecessary security risks.
+
+For more information and help, consult https://electronjs.org/docs/tutorial/security.
+This warning will not show up once the app is packaged.
+warnAboutInsecureCSP @ /home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188
+app.js:23 Beam Start Time: 1538411612248
+app.js:23 Beam Start Time: 1538411612367
+app.js:31 Beam 1 Time: 1538411613130
+app.js:31 Beam 1 Time: 1538411613159
+app.js:38 Beam 2 Time: 1538411613371
+app.js:38 Beam 2 Time: 1538411613399
+app.js:45 Beam 3 Time: 1538411614471
+app.js:45 Beam 3 Time: 1538411614503
+app.js:23 Beam Start Time: 1538411664698
+app.js:23 Beam Start Time: 1538411664815
+app.js:31 Beam 1 Time: 1538411665557
+app.js:31 Beam 1 Time: 1538411665585
+app.js:38 Beam 2 Time: 1538411665785
+app.js:38 Beam 2 Time: 1538411665811
+app.js:45 Beam 3 Time: 1538411666799
+app.js:45 Beam 3 Time: 1538411666827
+app.js:23 Beam Start Time: 1538411689635
+app.js:23 Beam Start Time: 1538411689750
+app.js:31 Beam 1 Time: 1538411690496
+app.js:31 Beam 1 Time: 1538411690524
+app.js:38 Beam 2 Time: 1538411690731
+app.js:38 Beam 2 Time: 1538411690758
+app.js:45 Beam 3 Time: 1538411691813
+app.js:45 Beam 3 Time: 1538411691844
