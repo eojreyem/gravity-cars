@@ -1,10 +1,11 @@
 var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
-  led = new Gpio(4, 'out'), //#B
-  beam = new Gpio(17, 'in', 'rising');
+  beamStart = new Gpio(14, 'in', 'falling');
+  beam1 = new Gpio(2, 'in', 'falling');
+  beam2 = new Gpio(2, 'in', 'falling');
+  beam3 = new Gpio(2, 'in', 'falling');
 
-var lastTime = 0;
 //  interval;
 
 // interval = setInterval(function () { //#C
@@ -14,16 +15,38 @@ var lastTime = 0;
 //   });
 // }, 2000);
 
-beam.watch((err, value) => {
+beamStart.watch((err, value) => {
   if (err) {
     throw err;
   }
   var timeNow = (new Date()).getTime();
-  var timeDiff = timeNow - lastTime;
-  console.log("Time since last trigger: " + timeDiff);
-  led.writeSync(value);
-  lastTime = timeNow;
+  console.log("Beam Start Time: " + timeNow);
 });
+
+beam1.watch((err, value) => {
+  if (err) {
+    throw err;
+  }
+  var timeNow = (new Date()).getTime();
+  console.log("Beam 1 Time: " + timeNow);
+});
+beam2.watch((err, value) => {
+  if (err) {
+    throw err;
+  }
+  var timeNow = (new Date()).getTime();
+  console.log("Beam 2 Time: " + timeNow);
+});
+beam3.watch((err, value) => {
+  if (err) {
+    throw err;
+  }
+  var timeNow = (new Date()).getTime();
+  console.log("Beam 3 Time: " + timeNow);
+});
+
+
+
 
 process.on('SIGINT', function () { //#F
   clearInterval(interval);
