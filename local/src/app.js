@@ -3,8 +3,8 @@ var onoff = require('onoff'); //#A
 var Gpio = onoff.Gpio,
   beamStart = new Gpio(14, 'in', 'falling');
   beam1 = new Gpio(2, 'in', 'falling');
-  beam2 = new Gpio(2, 'in', 'falling');
-  beam3 = new Gpio(2, 'in', 'falling');
+  beam2 = new Gpio(3, 'in', 'falling');
+  beam3 = new Gpio(4, 'in', 'falling');
 
 //  interval;
 
