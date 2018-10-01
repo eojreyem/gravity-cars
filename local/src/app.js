@@ -1,10 +1,10 @@
 var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
-  beamStart = new Gpio(14, 'in', 'falling', {debounceTimeout: 200});
-  beam1 = new Gpio(2, 'in', 'falling', {debounceTimeout: 200});
-  beam2 = new Gpio(3, 'in', 'falling', {debounceTimeout: 200});
-  beam3 = new Gpio(4, 'in', 'falling', {debounceTimeout: 200});
+  beamStart = new Gpio(14, 'in', 'falling', {debounceTimeout: 10});
+  beam1 = new Gpio(2, 'in', 'falling', {debounceTimeout: 10});
+  beam2 = new Gpio(3, 'in', 'falling', {debounceTimeout: 10});
+  beam3 = new Gpio(4, 'in', 'falling', {debounceTimeout: 10});
 
 //  interval;
 
