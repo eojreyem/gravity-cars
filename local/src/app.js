@@ -8,7 +8,7 @@ var Gpio = onoff.Gpio,
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
 
-document.startRace(){
+function startRace(){
   console.log("GO GO GO!");
 };
 
