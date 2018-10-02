@@ -8,6 +8,9 @@ var Gpio = onoff.Gpio,
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
 
+var raceTimes = [];
+var timeIndex = 0;
+
 function startRace(){
   var timeNow = (new Date()).getTime();
   console.log("Solenoid release Time: " + timeNow);
@@ -26,34 +29,47 @@ beam0.watch((err, value) => {
   if (err) {
     throw err;
   }
-  var timeNow = (new Date()).getTime();
-  console.log("Beam 0 Time: " + timeNow);
+  //var timeNow = (new Date()).getTime();
+  raceTimes[timeIndex] = (new Date()).getTime();
+  timeIndex++;
+  //console.log("Beam 0 Time: " + timeNow);
 });
 
 beam1.watch((err, value) => {
   if (err) {
     throw err;
   }
-  var timeNow = (new Date()).getTime();
-  console.log("Beam 1 Time: " + timeNow);
+  //var timeNow = (new Date()).getTime();
+  raceTimes[timeIndex] = (new Date()).getTime();
+  timeIndex++;
+
+  //console.log("Beam 1 Time: " + timeNow);
 });
 beam2.watch((err, value) => {
   if (err) {
     throw err;
   }
-  var timeNow = (new Date()).getTime();
-  console.log("Beam 2 Time: " + timeNow);
+  //var timeNow = (new Date()).getTime();
+  raceTimes[timeIndex] = (new Date()).getTime();
+  timeIndex++;
+  //console.log("Beam 2 Time: " + timeNow);
 });
 beam3.watch((err, value) => {
   if (err) {
     throw err;
   }
-  var timeNow = (new Date()).getTime();
-  console.log("Beam 3 Time: " + timeNow);
-  document.getElementById("raceTime").innerHTML = timeNow;
+  //var timeNow = (new Date()).getTime();
+  //console.log("Beam 3 Time: " + timeNow);
+  raceTimes[timeIndex] = (new Date()).getTime();
+  timeIndex++;
+  if (timeIndex>6){
+    endRace();
+  }
 });
 
-
+function endRace(){
+  console.log(raceTimes);
+}
 
 
 process.on('SIGINT', function () { //#F
