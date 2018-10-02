@@ -62,7 +62,7 @@ beam3.watch((err, value) => {
   //var timeNow = (new Date()).getTime();
   //console.log("Beam 3 Time: " + timeNow);
   raceTimes[timeIndex] = (new Date()).getTime();
-  if (timeIndex>=5){
+  if (timeIndex>=7){
     endRace();
   }
   timeIndex++;
