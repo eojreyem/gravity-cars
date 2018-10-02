@@ -2,8 +2,8 @@ var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
 
-  startSwitch = new Gpio(15,)
-  beamStart = new Gpio(14, 'in', 'falling');
+  solenoid = new Gpio(15, 'out'); //output triggering relay for solenoid releasing cars.
+  beam0 = new Gpio(14, 'in', 'falling');
   beam1 = new Gpio(2, 'in', 'falling');
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
@@ -22,12 +22,12 @@ function startRace(){
 // }, 2000);
 
 
-beamStart.watch((err, value) => {
+beam0.watch((err, value) => {
   if (err) {
     throw err;
   }
   var timeNow = (new Date()).getTime();
-  console.log("Beam Start Time: " + timeNow);
+  console.log("Beam 0 Time: " + timeNow);
 });
 
 beam1.watch((err, value) => {
