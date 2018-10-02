@@ -1,81 +1,170 @@
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503096396
-app.js:26 Beam 0 Time: 1538503096518
-app.js:34 Beam 1 Time: 1538503097293
-app.js:34 Beam 1 Time: 1538503097322
-app.js:41 Beam 2 Time: 1538503097532
-app.js:41 Beam 2 Time: 1538503097560
-app.js:48 Beam 3 Time: 1538503098612
-app.js:48 Beam 3 Time: 1538503098647
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503123769
-app.js:26 Beam 0 Time: 1538503123891
-app.js:34 Beam 1 Time: 1538503124665
-app.js:34 Beam 1 Time: 1538503124695
-app.js:41 Beam 2 Time: 1538503124906
-app.js:41 Beam 2 Time: 1538503124933
-app.js:48 Beam 3 Time: 1538503125989
-app.js:48 Beam 3 Time: 1538503126020
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503144537
-app.js:26 Beam 0 Time: 1538503144659
-app.js:34 Beam 1 Time: 1538503145433
-app.js:34 Beam 1 Time: 1538503145462
-app.js:41 Beam 2 Time: 1538503145672
-app.js:41 Beam 2 Time: 1538503145700
-app.js:48 Beam 3 Time: 1538503146751
-app.js:48 Beam 3 Time: 1538503146782
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503355622
-app.js:26 Beam 0 Time: 1538503355740
-app.js:34 Beam 1 Time: 1538503356476
-app.js:34 Beam 1 Time: 1538503356504
-app.js:41 Beam 2 Time: 1538503356706
-app.js:41 Beam 2 Time: 1538503356733
-app.js:48 Beam 3 Time: 1538503357723
-app.js:48 Beam 3 Time: 1538503357751
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503380838
-app.js:26 Beam 0 Time: 1538503380956
-app.js:34 Beam 1 Time: 1538503381700
-app.js:34 Beam 1 Time: 1538503381727
-app.js:41 Beam 2 Time: 1538503381928
-app.js:41 Beam 2 Time: 1538503381954
-app.js:48 Beam 3 Time: 1538503382941
-app.js:48 Beam 3 Time: 1538503382969
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503399700
-app.js:26 Beam 0 Time: 1538503399818
-app.js:34 Beam 1 Time: 1538503400559
-app.js:34 Beam 1 Time: 1538503400588
-app.js:41 Beam 2 Time: 1538503400788
-app.js:41 Beam 2 Time: 1538503400814
-app.js:48 Beam 3 Time: 1538503401802
-app.js:48 Beam 3 Time: 1538503401833
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503424420
-app.js:26 Beam 0 Time: 1538503424537
-app.js:34 Beam 1 Time: 1538503425275
-app.js:34 Beam 1 Time: 1538503425302
-app.js:41 Beam 2 Time: 1538503425501
-app.js:41 Beam 2 Time: 1538503425527
-app.js:48 Beam 3 Time: 1538503426496
-app.js:48 Beam 3 Time: 1538503426523
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503443014
-app.js:26 Beam 0 Time: 1538503443131
-app.js:34 Beam 1 Time: 1538503443868
-app.js:34 Beam 1 Time: 1538503443895
-app.js:41 Beam 2 Time: 1538503444095
-app.js:41 Beam 2 Time: 1538503444121
-app.js:48 Beam 3 Time: 1538503445100
-app.js:48 Beam 3 Time: 1538503445128
-app.js:12 GO GO GO!
-app.js:26 Beam 0 Time: 1538503467828
-app.js:26 Beam 0 Time: 1538503467945
-app.js:34 Beam 1 Time: 1538503468682
-app.js:34 Beam 1 Time: 1538503468710
-app.js:41 Beam 2 Time: 1538503468908
-app.js:41 Beam 2 Time: 1538503468934
-app.js:48 Beam 3 Time: 1538503469901
-app.js:48 Beam 3 Time: 1538503469929
+/home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188 Electron Security Warning (Insecure Content-Security-Policy) This renderer process has either no Content Security Policy set or a policy with "unsafe-eval" enabled. This exposes users of this app to unnecessary security risks.
+
+For more information and help, consult https://electronjs.org/docs/tutorial/security.
+This warning will not show up once the app is packaged.
+warnAboutInsecureCSP @ /home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188
+app.js:18 Solenoid release Time: 1538508700362
+app.js:23 Run name: Empty Tall
+app.js:73 (8) [1538508700579, 1538508700704, 1538508701489, 1538508701517, 1538508701731, 1538508701758, 1538508702796, 1538508702825]
+app.js:77 0
+app.js:77 125
+app.js:77 910
+app.js:77 938
+app.js:77 1152
+app.js:77 1179
+app.js:77 2217
+app.js:77 2246
+app.js:18 Solenoid release Time: 1538508725189
+app.js:23 Run name: Empty Tall
+app.js:73 (8) [1538508725402, 1538508725528, 1538508726313, 1538508726342, 1538508726555, 1538508726583, 1538508727619, 1538508727648]
+app.js:77 0
+app.js:77 126
+app.js:77 911
+app.js:77 940
+app.js:77 1153
+app.js:77 1181
+app.js:77 2217
+app.js:77 2246
+app.js:18 Solenoid release Time: 1538508741254
+app.js:23 Run name: Empty Tall
+app.js:73 (8) [1538508741467, 1538508741593, 1538508742377, 1538508742406, 1538508742619, 1538508742647, 1538508743683, 1538508743712]
+app.js:77 0
+app.js:77 126
+app.js:77 910
+app.js:77 939
+app.js:77 1152
+app.js:77 1180
+app.js:77 2216
+app.js:77 2245
+app.js:18 Solenoid release Time: 1538508760872
+app.js:23 Run name: Empty Tall
+app.js:73 (8) [1538508761084, 1538508761210, 1538508761994, 1538508762023, 1538508762236, 1538508762264, 1538508763298, 1538508763327]
+app.js:77 0
+app.js:77 126
+app.js:77 910
+app.js:77 939
+app.js:77 1152
+app.js:77 1180
+app.js:77 2214
+app.js:77 2243
+app.js:18 Solenoid release Time: 1538508779175
+app.js:23 Run name: Empty Tall
+app.js:73 (8) [1538508779387, 1538508779513, 1538508780298, 1538508780327, 1538508780541, 1538508780568, 1538508781605, 1538508781634]
+app.js:77 0
+app.js:77 126
+app.js:77 911
+app.js:77 940
+app.js:77 1154
+app.js:77 1181
+app.js:77 2218
+app.js:77 2247
+app.js:18 Solenoid release Time: 1538508839654
+app.js:23 Run name: Wt front Tall
+app.js:73 (8) [1538508839861, 1538508839981, 1538508840726, 1538508840754, 1538508840956, 1538508840982, 1538508841957, 1538508841984]
+app.js:77 0
+app.js:77 120
+app.js:77 865
+app.js:77 893
+app.js:77 1095
+app.js:77 1121
+app.js:77 2096
+app.js:77 2123
+app.js:18 Solenoid release Time: 1538508857669
+app.js:23 Run name: Wt front Tall
+app.js:73 (8) [1538508857877, 1538508857995, 1538508858741, 1538508858769, 1538508858972, 1538508858997, 1538508859975, 1538508860003]
+app.js:77 0
+app.js:77 118
+app.js:77 864
+app.js:77 892
+app.js:77 1095
+app.js:77 1120
+app.js:77 2098
+app.js:77 2126
+app.js:18 Solenoid release Time: 1538508881783
+app.js:23 Run name: Wt front Tall
+app.js:73 (8) [1538508881991, 1538508882109, 1538508882856, 1538508882883, 1538508883085, 1538508883111, 1538508884090, 1538508884117]
+app.js:77 0
+app.js:77 118
+app.js:77 865
+app.js:77 892
+app.js:77 1094
+app.js:77 1120
+app.js:77 2099
+app.js:77 2126
+app.js:18 Solenoid release Time: 1538508912101
+app.js:23 Run name: Wt front Tall
+app.js:73 (8) [1538508912309, 1538508912429, 1538508913184, 1538508913212, 1538508913415, 1538508913441, 1538508914431, 1538508914458]
+app.js:77 0
+app.js:77 120
+app.js:77 875
+app.js:77 903
+app.js:77 1106
+app.js:77 1132
+app.js:77 2122
+app.js:77 2149
+app.js:18 Solenoid release Time: 1538508931447
+app.js:23 Run name: Wt front Tall
+app.js:73 (8) [1538508931655, 1538508931774, 1538508932524, 1538508932552, 1538508932755, 1538508932781, 1538508933766, 1538508933794]
+app.js:77 0
+app.js:77 119
+app.js:77 869
+app.js:77 897
+app.js:77 1100
+app.js:77 1126
+app.js:77 2111
+app.js:77 2139
+app.js:18 Solenoid release Time: 1538509030454
+app.js:23 Run name: Wt back Tall
+app.js:73 (8) [1538509030660, 1538509030778, 1538509031521, 1538509031548, 1538509031751, 1538509031777, 1538509032754, 1538509032781]
+app.js:77 0
+app.js:77 118
+app.js:77 861
+app.js:77 888
+app.js:77 1091
+app.js:77 1117
+app.js:77 2094
+app.js:77 2121
+app.js:18 Solenoid release Time: 1538509049764
+app.js:23 Run name: Wt back Tall
+app.js:73 (8) [1538509049969, 1538509050088, 1538509050827, 1538509050855, 1538509051056, 1538509051082, 1538509052059, 1538509052086]
+app.js:77 0
+app.js:77 119
+app.js:77 858
+app.js:77 886
+app.js:77 1087
+app.js:77 1113
+app.js:77 2090
+app.js:77 2117
+app.js:18 Solenoid release Time: 1538509067012
+app.js:23 Run name: Wt back Tall
+app.js:73 (8) [1538509067217, 1538509067336, 1538509068078, 1538509068105, 1538509068308, 1538509068335, 1538509069310, 1538509069337]
+app.js:77 0
+app.js:77 119
+app.js:77 861
+app.js:77 888
+app.js:77 1091
+app.js:77 1118
+app.js:77 2093
+app.js:77 2120
+app.js:18 Solenoid release Time: 1538509084692
+app.js:23 Run name: Wt back Tall
+app.js:73 (8) [1538509084897, 1538509085015, 1538509085755, 1538509085783, 1538509085985, 1538509086011, 1538509086980, 1538509087007]
+app.js:77 0
+app.js:77 118
+app.js:77 858
+app.js:77 886
+app.js:77 1088
+app.js:77 1114
+app.js:77 2083
+app.js:77 2110
+app.js:18 Solenoid release Time: 1538509107892
+app.js:23 Run name: Wt back Tall
+app.js:73 (8) [1538509108098, 1538509108217, 1538509108957, 1538509108984, 1538509109186, 1538509109212, 1538509110183, 1538509110210]
+app.js:77 0
+app.js:77 119
+app.js:77 859
+app.js:77 886
+app.js:77 1088
+app.js:77 1114
+app.js:77 2085
+app.js:77 2112
