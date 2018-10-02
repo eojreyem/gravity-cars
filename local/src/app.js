@@ -12,6 +12,7 @@ var raceTimes = [];
 var timeIndex = 0;
 
 function startRace(){
+  raceTimes = [];
   var timeNow = (new Date()).getTime();
   console.log("Solenoid release Time: " + timeNow);
   var timeNow = (new Date()).getTime();
