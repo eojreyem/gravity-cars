@@ -10,17 +10,13 @@ var Gpio = onoff.Gpio,
 
 function startRace(){
   console.log("GO GO GO!");
+  solenoid.writeSync(1); //set pin state to 1(power solenoid)
+  setTimeout(offSolenoid, 3000); //stop blinking after 3 seconds
 };
 
-//  interval;
-
-// interval = setInterval(function () { //#C
-//   var value = (led.readSync() + 1) % 2; //#D
-//   led.write(value, function() { //#E
-//     console.log("Changed LED state to: " + value);
-//   });
-// }, 2000);
-
+function offSolenoid() { //function to power off solenoid
+  solenoid.writeSync(0); // Turn solenoid relay off
+}
 
 beam0.watch((err, value) => {
   if (err) {
