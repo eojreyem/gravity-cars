@@ -1,10 +1,16 @@
 var onoff = require('onoff'); //#A
 
 var Gpio = onoff.Gpio,
+
+  startSwitch = new Gpio(15,)
   beamStart = new Gpio(14, 'in', 'falling');
   beam1 = new Gpio(2, 'in', 'falling');
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
+
+document.startRace(){
+  console.log("GO GO GO!");
+};
 
 //  interval;
 
@@ -14,6 +20,7 @@ var Gpio = onoff.Gpio,
 //     console.log("Changed LED state to: " + value);
 //   });
 // }, 2000);
+
 
 beamStart.watch((err, value) => {
   if (err) {
