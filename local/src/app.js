@@ -61,14 +61,20 @@ beam3.watch((err, value) => {
   //var timeNow = (new Date()).getTime();
   //console.log("Beam 3 Time: " + timeNow);
   raceTimes[timeIndex] = (new Date()).getTime();
-  timeIndex++;
-  if (timeIndex>6){
+  if (timeIndex>=5){
     endRace();
   }
+  timeIndex++;
 });
 
 function endRace(){
   console.log(raceTimes);
+  var i;
+  for (i = 0; i < raceTimes.length; i++) {
+    time = raceTimes[i]-raceTimes[0]
+      console.log(time);
+  }
+
 }
 
 
