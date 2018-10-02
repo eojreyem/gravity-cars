@@ -3,15 +3,21 @@ var onoff = require('onoff'); //#A
 var Gpio = onoff.Gpio,
 
   solenoid = new Gpio(15, 'out'); //output triggering relay for solenoid releasing cars.
-  beam0 = new Gpio(14, 'in', 'falling');
+  beam0 = new Gpio(14, 'in', 'falling'); //Initialize beam breaks
   beam1 = new Gpio(2, 'in', 'falling');
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
+  tbRaceName = document.getElementById("tbRaceName");
 
 function startRace(){
-  console.log("GO GO GO!");
+  var timeNow = (new Date()).getTime();
+  console.log("Solenoid release Time: " + timeNow);
+  var timeNow = (new Date()).getTime();
   solenoid.writeSync(1); //set pin state to 1(power solenoid)
-  setTimeout(offSolenoid, 3000); //stop blinking after 3 seconds
+  setTimeout(offSolenoid, 1000); //release solenoid after 3 seconds
+  console.log("Run name: " + tbRaceName.value);
+  
+
 };
 
 function offSolenoid() { //function to power off solenoid
