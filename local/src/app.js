@@ -43,6 +43,7 @@ beam3.watch((err, value) => {
   }
   var timeNow = (new Date()).getTime();
   console.log("Beam 3 Time: " + timeNow);
+  document.getElementById("raceTime").innerHTML = timeNow;
 });
 
 
