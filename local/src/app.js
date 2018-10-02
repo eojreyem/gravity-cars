@@ -13,6 +13,7 @@ var timeIndex = 0;
 
 function startRace(){
   raceTimes = [];
+  timeIndex = 0;
   var timeNow = (new Date()).getTime();
   console.log("Solenoid release Time: " + timeNow);
   var timeNow = (new Date()).getTime();
