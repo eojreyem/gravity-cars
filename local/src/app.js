@@ -8,6 +8,8 @@ var Gpio = onoff.Gpio,
   beam2 = new Gpio(3, 'in', 'falling');
   beam3 = new Gpio(4, 'in', 'falling');
 
+var replicate = 1;
+var raceName = document.getElementById("tbRaceName").value;
 var raceTimes = [];
 
 function startRace(){
@@ -17,8 +19,12 @@ function startRace(){
   var timeNow = (new Date()).getTime();
   solenoid.writeSync(1); //set pin state to 1(power solenoid)
   setTimeout(offSolenoid, 1000); //release solenoid after 3 seconds
-  var raceName = document.getElementById("tbRaceName").value;
-  console.log("Run name: " + raceName);
+  var currentRaceName = document.getElementById("tbRaceName").value;
+  if (currentRaceName != raceName){
+    replicate = 1;
+    raceName = currentRaceName;
+    console.log("Run name: " + raceName);
+  }  
 };
 
 function offSolenoid() { //function to power off solenoid
@@ -73,10 +79,11 @@ function endRace(){
   console.log(raceTimes);
   var i;
   var times;
-  for (i = 0; i < raceTimes.length; i++) {
-    raceTimes[i] = raceTimes[i]-raceTimes[0]
-  }
-  console.log("Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]);
+  for (i = 1; i < raceTimes.length; i++) {
+    raceTimes[i] = raceTimes[i]-raceTimes[0];
+  };
+  raceTimes[0] = 0;
+  console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]);
 }
 
 process.on('SIGINT', function () { //#F
