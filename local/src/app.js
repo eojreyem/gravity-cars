@@ -9,11 +9,9 @@ var Gpio = onoff.Gpio,
   beam3 = new Gpio(4, 'in', 'falling');
 
 var raceTimes = [];
-var timeIndex = 0;
 
 function startRace(){
   raceTimes = [];
-  timeIndex = 0;
   var timeNow = (new Date()).getTime();
   console.log("Solenoid release Time: " + timeNow);
   var timeNow = (new Date()).getTime();
@@ -31,42 +29,42 @@ beam0.watch((err, value) => {
   if (err) {
     throw err;
   }
-  //var timeNow = (new Date()).getTime();
-  raceTimes[timeIndex] = (new Date()).getTime();
-  timeIndex++;
-  //console.log("Beam 0 Time: " + timeNow);
+  if (raceTimes[0]){
+    raceTimes[1] = (new Date()).getTime();
+  } else {
+    raceTimes[0] = (new Date()).getTime();
+  }
 });
 
 beam1.watch((err, value) => {
   if (err) {
     throw err;
   }
-  //var timeNow = (new Date()).getTime();
-  raceTimes[timeIndex] = (new Date()).getTime();
-  timeIndex++;
-
-  //console.log("Beam 1 Time: " + timeNow);
+  if (raceTimes[2]){
+    raceTimes[3] = (new Date()).getTime();
+  } else {
+    raceTimes[2] = (new Date()).getTime();
+  }
 });
 beam2.watch((err, value) => {
   if (err) {
     throw err;
   }
-  //var timeNow = (new Date()).getTime();
-  raceTimes[timeIndex] = (new Date()).getTime();
-  timeIndex++;
-  //console.log("Beam 2 Time: " + timeNow);
+  if (raceTimes[4]){
+    raceTimes[5] = (new Date()).getTime();
+  } else {
+    raceTimes[4] = (new Date()).getTime();
+  }
 });
 beam3.watch((err, value) => {
   if (err) {
     throw err;
   }
-  //var timeNow = (new Date()).getTime();
-  //console.log("Beam 3 Time: " + timeNow);
-  raceTimes[timeIndex] = (new Date()).getTime();
-  if (timeIndex>=7){
-    endRace();
+  if (raceTimes[6]){
+    raceTimes[7] = (new Date()).getTime();
+  } else {
+    raceTimes[6] = (new Date()).getTime();
   }
-  timeIndex++;
 });
 
 function endRace(){
@@ -82,8 +80,8 @@ function endRace(){
 
 process.on('SIGINT', function () { //#F
   clearInterval(interval);
-  led.writeSync(0); //#G
-  led.unexport();
+  Solenoid.writeSync(0); //#G
+  solenoid.unexport();
   console.log('Bye, bye!');
   process.exit();
 });
