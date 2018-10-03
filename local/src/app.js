@@ -62,9 +62,11 @@ beam3.watch((err, value) => {
   }
   if (raceTimes[6]){
     raceTimes[7] = (new Date()).getTime();
+    endRace();
   } else {
     raceTimes[6] = (new Date()).getTime();
   }
+
 });
 
 function endRace(){
