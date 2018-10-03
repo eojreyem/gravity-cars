@@ -72,13 +72,12 @@ beam3.watch((err, value) => {
 function endRace(){
   console.log(raceTimes);
   var i;
+  var times;
   for (i = 0; i < raceTimes.length; i++) {
-    time = raceTimes[i]-raceTimes[0]
-      console.log(time);
+    raceTimes[i] = raceTimes[i]-raceTimes[0]
   }
-
+  console.log("Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]);
 }
-
 
 process.on('SIGINT', function () { //#F
   clearInterval(interval);
