@@ -15,7 +15,8 @@ var raceTimes = [];
 function startRace(){
   raceTimes = [];
   var timeNow = (new Date()).getTime();
-  console.log("Solenoid release Time: " + timeNow);
+  raceTimes[0] = timeNow;
+  //console.log("Solenoid release Time: " + timeNow);
   var timeNow = (new Date()).getTime();
   solenoid.writeSync(1); //set pin state to 1(power solenoid)
   setTimeout(offSolenoid, 1000); //release solenoid after 3 seconds
@@ -35,10 +36,10 @@ beam0.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if (raceTimes[0]){
-    raceTimes[1] = (new Date()).getTime();
+  if (raceTimes[1]){
+    raceTimes[2] = (new Date()).getTime();
   } else {
-    raceTimes[0] = (new Date()).getTime();
+    raceTimes[1] = (new Date()).getTime();
   }
 });
 
@@ -46,44 +47,44 @@ beam1.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if (raceTimes[2]){
-    raceTimes[3] = (new Date()).getTime();
+  if (raceTimes[3]){
+    raceTimes[4] = (new Date()).getTime();
   } else {
-    raceTimes[2] = (new Date()).getTime();
+    raceTimes[3] = (new Date()).getTime();
   }
 });
 beam2.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if (raceTimes[4]){
-    raceTimes[5] = (new Date()).getTime();
+  if (raceTimes[5]){
+    raceTimes[6] = (new Date()).getTime();
   } else {
-    raceTimes[4] = (new Date()).getTime();
+    raceTimes[5] = (new Date()).getTime();
   }
 });
 beam3.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if (raceTimes[6]){
-    raceTimes[7] = (new Date()).getTime();
+  if (raceTimes[7]){
+    raceTimes[8] = (new Date()).getTime();
     endRace();
   } else {
-    raceTimes[6] = (new Date()).getTime();
+    raceTimes[7] = (new Date()).getTime();
   }
 
 });
 
 function endRace(){
-  console.log(raceTimes);
   var i;
   var times;
   for (i = 1; i < raceTimes.length; i++) {
     raceTimes[i] = raceTimes[i]-raceTimes[0];
   };
   raceTimes[0] = 0;
-  console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]);
+  console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]+", "+raceTimes[8]);
+  replicate++;
 }
 
 process.on('SIGINT', function () { //#F
