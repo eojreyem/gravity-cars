@@ -9,7 +9,7 @@ var Gpio = onoff.Gpio,
   beam3 = new Gpio(4, 'in', 'falling');
 
 var replicate = 1;
-var raceName = document.getElementById("tbRaceName").value;
+var raceName = "blank";
 var raceTimes = [];
 
 function startRace(){
@@ -24,7 +24,7 @@ function startRace(){
     replicate = 1;
     raceName = currentRaceName;
     console.log("Run name: " + raceName);
-  }  
+  }
 };
 
 function offSolenoid() { //function to power off solenoid
