@@ -1,20 +1,20 @@
-app.js:27 Run name: new wt Back
-app.js:86 Rep1 Times: 0, 149, 292, 743, 781, 1097, 1127, 2291, 2324
-app.js:86 Rep2 Times: 0, 152, 295, 745, 784, 1100, 1131, 2299, 2332
-app.js:86 Rep3 Times: 0, 151, 295, 745, 784, 1101, 1132, 2305, 2338
-app.js:86 Rep4 Times: 0, 150, 293, 744, 782, 1099, 1130, 2300, 2332
-app.js:27 Run name: new wt Front
-app.js:86 Rep1 Times: 0, 151, 294, 743, 782, 1101, 1133, 2349, 2384
-app.js:86 Rep2 Times: 0, 150, 293, 742, 781, 1102, 1134, 2355, 2390
-app.js:86 Rep3 Times: 0, 150, 293, 742, 781, 1101, 1132, 2351, 2386
-app.js:86 Rep4 Times: 0, 151, 294, 744, 782, 1102, 1133, 2342, 2376
-app.js:27 Run name: old wt Back
-app.js:86 Rep1 Times: 0, 150, 294, 751, 790, 1110, 1142, 2328, 2362
-app.js:86 Rep2 Times: 0, 151, 295, 753, 792, 1113, 1145, 2337, 2371
-app.js:86 Rep3 Times: 0, 152, 296, 752, 791, 1112, 1144, 2351, 2386
-app.js:86 Rep4 Times: 0, 151, 295, 751, 790, 1111, 1142, 2321, 2354
-app.js:27 Run name: old wt Front
-app.js:86 Rep1 Times: 0, 151, 295, 747, 786, 1110, 1142, 2354, 2388
-app.js:86 Rep2 Times: 0, 150, 294, 746, 785, 1110, 1142, 2363, 2398
-app.js:86 Rep3 Times: 0, 151, 295, 749, 788, 1113, 1145, 2362, 2396
-app.js:86 Rep4 Times: 0, 151, 294, 747, 786, 1111, 1143, 2362, 2396
+/home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188 Electron Security Warning (Insecure Content-Security-Policy) This renderer process has either no Content Security Policy set or a policy with "unsafe-eval" enabled. This exposes users of this app to unnecessary security risks.
+
+For more information and help, consult https://electronjs.org/docs/tutorial/security.
+This warning will not show up once the app is packaged.
+warnAboutInsecureCSP @ /home/pi/Parcel/node_modules/electron/dist/resources/electron.asar/renderer/security-warnings.js:188
+app.js:27 Run name: warm up runs
+app.js:86 Rep1 Times: 0, 138, 283, 738, 776, 1092, 1123, 2293, 2325
+app.js:86 Rep2 Times: 0, 150, 293, 744, 782, 1100, 1131, 2311, 2344
+app.js:86 Rep3 Times: 0, 150, 292, 744, 782, 1100, 1131, 2312, 2345
+app.js:86 Rep4 Times: 0, 150, 293, 745, 784, 1100, 1131, 2312, 2346
+app.js:27 Run name: wt back wedge back
+app.js:86 Rep1 Times: 0, 150, 293, 745, 783, 1101, 1132, 2311, 2343
+app.js:86 Rep2 Times: 0, 150, 293, 745, 784, 1101, 1132, 2314, 2347
+app.js:86 Rep3 Times: 0, 150, 293, 746, 785, 1103, 1134, 2310, 2343
+app.js:86 Rep4 Times: 0, 150, 294, 746, 785, 1103, 1134, 2319, 2352
+app.js:27 Run name: wt back trap back
+app.js:86 Rep1 Times: 0, 150, 293, 745, 784, 1102, 1134, 2333, 2367
+app.js:86 Rep2 Times: 0, 150, 294, 747, 785, 1105, 1136, 2329, 2363
+app.js:86 Rep3 Times: 0, 149, 292, 746, 785, 1104, 1135, 2330, 2363
+app.js:86 Rep4 Times: 0, 150, 294, 747, 786, 1104, 1135, 2326, 2360
