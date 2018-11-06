@@ -85,6 +85,7 @@ function endRace(){
   raceTimes[0] = 0;
   console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]+", "+raceTimes[8]);
   replicate++;
+  raceTimes = [];
 }
 
 process.on('SIGINT', function () { //#F
