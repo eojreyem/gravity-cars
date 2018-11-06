@@ -67,7 +67,7 @@ beam3.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if (raceTimes[7]){
+  if (raceTimes[7]>1){
     raceTimes[8] = (new Date()).getTime();
     endRace();
   } else {
