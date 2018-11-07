@@ -2,13 +2,50 @@
 <html lang="en">
 <meta charset="utf-8"></meta>
   <head>
-    <title>Gravity Cars</title>
+    <title>Gateway Raceway</title>
     <script src="./src/app.js"></script>
+    <style>
+    .column {
+        float: left;
+        width: 33.33%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .timefont {
+        font-size: 30px;
+        color: red;
+    }
+
+    </style>
   </head>
   <body>
-    <h1 style="color: #1F618D;">Gravity Car</h1>
+    <div class="row">
+      <div class="row">
+        <div class="column"><img src="src/images/flags.jpg" alt="flags"></div>
+        <div class="column"><h1>Gateway Raceway</h1></div>
+        <div class="column"><img src="src/images/flags.jpg" alt="flags"></div>
+      </div>
+
+    </div>
+
       Race name: <input type="text" id="tbRaceName"><br>
-      <button onclick="startRace()">Start Race!</button>
+      <button onclick="startRace()">Start</button>
       <p id="raceTime"></p>
+      <div class="row">
+        <div class="column"><p class="timefont" id="lane1Time">0.000</p></div>
+        <div class="column"><p class="timefont" id="lane2Time">0.000</p></div>
+        <div class="column"><p class="timefont" id="lane3Time">0.000</p></div>
+      </div>
+      <div class="row">
+        <div class="column"><img src="src/images/car.png" alt="car1"></div>
+        <div class="column"><img src="src/images/car.png" alt="car2"></div>
+        <div class="column"><img src="src/images/car.png" alt="car3"></div>
+      </div>
+
   </body>
 </html>
