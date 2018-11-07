@@ -63,8 +63,7 @@ beam2.watch((err, value) => {
     raceTimes[5] = (new Date()).getTime();
   }
 });
-beam3.watch((err, value) => {
-  console.log("beam3:" + value);
+beam3.watch((err, value) => {  
   if (err) {
     throw err;
   }
