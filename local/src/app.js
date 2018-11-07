@@ -81,16 +81,15 @@ function endRace(){
   var times;
   for (i = 1; i < raceTimes.length; i++) {
     raceTimes[i] = raceTimes[i]-raceTimes[0];
-  };
+  }
   raceTimes[0] = 0;
   document.getElementById("lane1Time").innerHTML = raceTimes[6]+" ms";
-  document.getElementById("lane1Time").innerHTML = raceTimes[7]+" ms";
-  document.getElementById("lane1Time").innerHTML = raceTimes[8]+" ms";
-
+  document.getElementById("lane2Time").innerHTML = raceTimes[7]+" ms";
+  document.getElementById("lane3Time").innerHTML = raceTimes[8]+" ms";
 
   console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]+", "+raceTimes[8]);
   replicate++;
-  raceTimes = [];
+  raceTimes.length = 0;
 }
 
 process.on('SIGINT', function () { //#F
