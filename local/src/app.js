@@ -64,6 +64,7 @@ beam2.watch((err, value) => {
   }
 });
 beam3.watch((err, value) => {
+  console.log("beam3:" + value);
   if (err) {
     throw err;
   }
