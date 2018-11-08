@@ -63,7 +63,7 @@ beam2.watch((err, value) => {
     raceTimes[5] = (new Date()).getTime();
   }
 });
-beam3.watch((err, value) => {  
+beam3.watch((err, value) => {
   if (err) {
     throw err;
   }
@@ -77,8 +77,8 @@ beam3.watch((err, value) => {
 });
 
 function endRace(){
+  console.log(Date.now());
   var i;
-  var times;
   for (i = 1; i < raceTimes.length; i++) {
     raceTimes[i] = raceTimes[i]-raceTimes[0];
   }
