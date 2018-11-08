@@ -33,7 +33,6 @@ function offSolenoid() { //function to power off solenoid
 }
 
 beam0.watch((err, value) => {
-  console.log("beam0" + value);
   if (err) {
     throw err;
   }
@@ -45,7 +44,6 @@ beam0.watch((err, value) => {
 });
 
 beam1.watch((err, value) => {
-  console.log("beam1" + value);
   if (err) {
     throw err;
   }
@@ -56,7 +54,6 @@ beam1.watch((err, value) => {
   }
 });
 beam2.watch((err, value) => {
-  console.log("beam2" + value);
   if (err) {
     throw err;
   }
@@ -67,7 +64,6 @@ beam2.watch((err, value) => {
   }
 });
 beam3.watch((err, value) => {
-  console.log("beam3" + value);
   if (err) {
     throw err;
   }
@@ -81,7 +77,6 @@ beam3.watch((err, value) => {
 });
 
 function endRace(){
-  console.log(Date.now());
   var i;
   for (i = 1; i < raceTimes.length; i++) {
     raceTimes[i] = raceTimes[i]-raceTimes[0];
