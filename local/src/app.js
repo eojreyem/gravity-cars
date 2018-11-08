@@ -33,6 +33,7 @@ function offSolenoid() { //function to power off solenoid
 }
 
 beam0.watch((err, value) => {
+  console.log("beam0" + value);
   if (err) {
     throw err;
   }
@@ -44,6 +45,7 @@ beam0.watch((err, value) => {
 });
 
 beam1.watch((err, value) => {
+  console.log("beam1" + value);
   if (err) {
     throw err;
   }
@@ -54,6 +56,7 @@ beam1.watch((err, value) => {
   }
 });
 beam2.watch((err, value) => {
+  console.log("beam2" + value);
   if (err) {
     throw err;
   }
