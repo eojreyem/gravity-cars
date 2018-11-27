@@ -9,9 +9,8 @@ const config = {
 var tracks = [];
 
 class Track {
-  constructor(trackNum, startPin, finishPin, onFinish) {
+  constructor(startPin, finishPin, onFinish) {
     this.isRunning = false;
-    this.id = trackNum;
     this.startPin = startPin;
     this.finishPin = finishPin;
 
@@ -38,10 +37,15 @@ class Track {
         //TODO display 1st 2nd 3rd...
         var time = (this.finishTime - this.startTime)/1000;
         var time3dec = num.toFixed(3);
-        document.getElementById("lane"+ this.id +"Time").innerHTML = time3dec + " s";
+
+        document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
       }
     });
   }
+}
+
+var trackQuery = function(track){
+  return track == this;
 }
 
 //initialize output pin for solenoid car release
@@ -49,7 +53,7 @@ solenoid = new Gpio(config.solenoidPin, 'out');
 
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
-  tracks[i] = new Track(i, config.startBeamPins[i], config.finishBeamPins[i]);
+  tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
 }
 
 //Start Race when spacebar is pressed.
