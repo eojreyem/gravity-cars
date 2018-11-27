@@ -1,108 +1,91 @@
-var onoff = require('onoff'); //#A
+const Gpio = require('onoff').Gpio; // Import the onoff library
 
-var Gpio = onoff.Gpio,
+const config = {
+  "solenoidPin":15,
+  "startBeamPins":[2,3,4],
+  "finishBeamPins":[17,27,22]
+}
 
-solenoid = new Gpio(15, 'out'); //output triggering relay for solenoid releasing cars.
-beam0 = new Gpio(14, 'in', 'falling'); //Initialize beam breaks
-beam1 = new Gpio(2, 'in', 'falling');
-beam2 = new Gpio(3, 'in', 'falling');
-beam3 = new Gpio(4, 'in', 'falling');
+var tracks = [];
 
-var replicate = 1;
-var raceName = "blank";
-var raceTimes = [];
+class Track {
+  constructor(trackNum, startPin, finishPin, onFinish) {
+    this.isRunning = false;
+    this.id = trackNum;
+    this.startPin = startPin;
+    this.finishPin = finishPin;
 
-function startRace(){
-  raceTimes = [];
-  var timeNow = (new Date()).getTime();
-  raceTimes[0] = timeNow;
-  //console.log("Solenoid release Time: " + timeNow);
-  var timeNow = (new Date()).getTime();
-  solenoid.writeSync(1); //set pin state to 1(power solenoid)
-  setTimeout(offSolenoid, 1000); //release solenoid after 3 seconds
-  var currentRaceName = document.getElementById("tbRaceName").value;
-  if (currentRaceName != raceName){
-    replicate = 1;
-    raceName = currentRaceName;
-    console.log("Run name: " + raceName);
+    this.startCtl = new Gpio(this.startPin, 'in', 'rising');
+    this.finishCtl = new Gpio(this.finishPin, 'in', 'rising');
+
+    this.startCtrl.watch((err, value) => {
+      if (err) {
+        throw err;
+      }
+      if (this.startTime === ""){ //don't overwrite
+        this.startTime = Date.now();
+        this.isRunning = true;
+      }
+    });
+
+    this.finishCtrl.watch((err, value) => {
+      if (err) {
+        throw err;
+      }
+      if (this.finishTime === ""){ //don't overwrite
+        this.finishTime = Date.now();
+        this.isRunning = false;
+        onFinish(this.id);
+      }
+    });
+  }
+}
+
+//initialize output pin for solenoid car release
+solenoid = new Gpio(config.solenoidPin, 'out');
+
+//initialize all tracks per config json
+for (let i = 0; i < config.startBeamPins.length; i++) {  // create a track based on number of startBeamPins.
+  tracks[i] = new Track(i, config.startBeamPins[i], config.finishBeamPins[i]);
+}
+
+//Start Race when spacebar is pressed.
+document.body.onkeyup = function(e){
+
+  // check if any track isRunning.
+  for (let i = 0; i < tracks.length; i++) {
+    if (!tracks[i].isRunning) return false; //if any track is still running do not start new race.
+  }
+
+  if(e.keyCode == 32){   // function run if spacebar is pressed.
+    resetTrack();
+    solenoid.writeSync(1); //set pin state to 1(power solenoid)
+    setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
+    setTimeout(resetTrack, 5000); //timeout if race isn't completed after 5 sec.
+  }
+}
+
+function resetTrack(){
+  for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
+    tracks[i].startTime = "";
+    tracks[i].finishTime = "";
+    tracks[i].isRunning = false;
+    document.getElementById("lane"+ trackNum +"Time").innerHTML = "-.--- ms";
   }
 };
 
-function offSolenoid() { //function to power off solenoid
+function onFinish(trackNum){
+  //display finish Time
+  document.getElementById("lane"+ trackNum +"Time").innerHTML = tracks[trackNum].finishTime - tracks[trackNum].startTime + " ms";
+  //TODO display finish Placement trophy image
+}
+
+function offSolenoid() { //call back function to power off solenoid
   solenoid.writeSync(0); // Turn solenoid relay off
 }
 
-beam0.watch((err, value) => {
-  if (err) {
-    throw err;
-  }
-  if (raceTimes[1]){
-    raceTimes[2] = (new Date()).getTime();
-  } else {
-    raceTimes[1] = (new Date()).getTime();
-  }
-});
-
-beam1.watch((err, value) => {
-  if (err) {
-    throw err;
-  }
-  if (raceTimes[3]){
-    raceTimes[4] = (new Date()).getTime();
-  } else {
-    raceTimes[3] = (new Date()).getTime();
-  }
-});
-beam2.watch((err, value) => {
-  if (err) {
-    throw err;
-  }
-  if (raceTimes[5]){
-    raceTimes[6] = (new Date()).getTime();
-  } else {
-    raceTimes[5] = (new Date()).getTime();
-  }
-});
-beam3.watch((err, value) => {
-  if (err) {
-    throw err;
-  }
-  if (raceTimes[7]>1){
-    raceTimes[8] = (new Date()).getTime();
-    endRace();
-  } else {
-    raceTimes[7] = (new Date()).getTime();
-  }
-
-});
-
-function endRace(){
-  var i;
-  for (i = 1; i < raceTimes.length; i++) {
-    raceTimes[i] = raceTimes[i]-raceTimes[0];
-  }
-  raceTimes[0] = 0;
-  document.getElementById("lane1Time").innerHTML = raceTimes[6]+" ms";
-  document.getElementById("lane2Time").innerHTML = raceTimes[7]+" ms";
-  document.getElementById("lane3Time").innerHTML = raceTimes[8]+" ms";
-
-  console.log("Rep"+replicate+" Times: " +raceTimes[0]+", "+raceTimes[1]+", "+raceTimes[2]+", "+raceTimes[3]+", "+raceTimes[4]+", "+raceTimes[5]+", "+raceTimes[6]+", "+raceTimes[7]+", "+raceTimes[8]);
-  replicate++;
-  raceTimes.length = 0;
-}
-
-process.on('SIGINT', function () { //#F
-  clearInterval(interval);
-  Solenoid.writeSync(0); //#G
+process.on('SIGINT', function () { // Listen to the event triggered on CTRL+C
+  Solenoid.writeSync(0); //  Cleanly close the GPIO pin before exiting
   solenoid.unexport();
-  console.log('Bye, bye!');
   process.exit();
 });
-
-// #A Import the onoff library
-// #B Initialize pin 4 to be an output pin
-// #C This interval will be called every 2 seconds
-// #D Synchronously read the value of pin 4 and transform 1 to 0 or 0 to 1
-// #E Asynchronously write the new value to pin 4
-// #F Listen to the event triggered on CTRL+C
-// #G Cleanly close the GPIO pin before exiting
