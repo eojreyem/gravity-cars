@@ -36,7 +36,9 @@ class Track {
         this.finishTime = Date.now();
         this.isRunning = false;
         //TODO display 1st 2nd 3rd...
-        document.getElementById("lane"+ this.id +"Time").innerHTML = this.finishTime - this.startTime + " ms";
+        var time = (this.finishTime - this.startTime)/1000;
+        var time3dec = num.toFixed(3);
+        document.getElementById("lane"+ this.id +"Time").innerHTML = time3dec + " s";
       }
     });
   }
