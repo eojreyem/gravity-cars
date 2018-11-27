@@ -18,7 +18,7 @@ class Track {
     this.startCtl = new Gpio(this.startPin, 'in', 'rising');
     this.finishCtl = new Gpio(this.finishPin, 'in', 'rising');
 
-    this.startCtrl.watch((err, value) => {
+    this.startCtl.watch((err, value) => {
       if (err) {
         throw err;
       }
@@ -28,14 +28,15 @@ class Track {
       }
     });
 
-    this.finishCtrl.watch((err, value) => {
+    this.finishCtl.watch((err, value) => {
       if (err) {
         throw err;
       }
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
-        onFinish(this.id);
+        //TODO display 1st 2nd 3rd...
+        document.getElementById("lane"+ this.id +"Time").innerHTML = this.finishTime - this.startTime + " ms";
       }
     });
   }
@@ -45,7 +46,7 @@ class Track {
 solenoid = new Gpio(config.solenoidPin, 'out');
 
 //initialize all tracks per config json
-for (let i = 0; i < config.startBeamPins.length; i++) {  // create a track based on number of startBeamPins.
+for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
   tracks[i] = new Track(i, config.startBeamPins[i], config.finishBeamPins[i]);
 }
 
@@ -71,14 +72,9 @@ function resetTrack(){
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
     document.getElementById("lane"+ trackNum +"Time").innerHTML = "-.--- ms";
+    //TODO clear 1st 2nd 3rd
   }
 };
-
-function onFinish(trackNum){
-  //display finish Time
-  document.getElementById("lane"+ trackNum +"Time").innerHTML = tracks[trackNum].finishTime - tracks[trackNum].startTime + " ms";
-  //TODO display finish Placement trophy image
-}
 
 function offSolenoid() { //call back function to power off solenoid
   solenoid.writeSync(0); // Turn solenoid relay off
