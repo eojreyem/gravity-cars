@@ -51,7 +51,7 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 }
 
 //Start Race when spacebar is pressed.
-document.body.onkeyup = function(e){
+document.onkeyup = function(e){
 
   // check if any track isRunning.
   for (let i = 0; i < tracks.length; i++) {
