@@ -7,6 +7,7 @@ const config = {
 }
 
 var tracks = [];
+var finishPlace = 1;
 
 class Track {
   constructor(startPin, finishPin, onFinish) {
@@ -34,7 +35,10 @@ class Track {
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
+
         //TODO display 1st 2nd 3rd...
+        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
+        finishPlace++;
         var time = (this.finishTime - this.startTime)/1000;
         var time3dec = time.toFixed(3);
 
@@ -62,8 +66,9 @@ document.onkeyup = function(e){
   }
 
   if(e.keyCode == 32){   // function run if spacebar is pressed.
-    console.log("Spacebar pressed");
+    console.log("Spacebar = START!!!");
     resetTrack();
+    finishPlace = 1;
     document.getElementById("lane0Time").innerHTML = "-.--- ms";
     document.getElementById("lane1Time").innerHTML = "-.--- ms";
     document.getElementById("lane2Time").innerHTML = "-.--- ms";
