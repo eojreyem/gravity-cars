@@ -64,6 +64,9 @@ document.onkeyup = function(e){
   if(e.keyCode == 32){   // function run if spacebar is pressed.
     console.log("Spacebar pressed");
     resetTrack();
+    document.getElementById("lane0Time").innerHTML = "-.--- ms";
+    document.getElementById("lane1Time").innerHTML = "-.--- ms";
+    document.getElementById("lane2Time").innerHTML = "-.--- ms";
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
     setTimeout(resetTrack, 5000); //timeout if race isn't completed after 5 sec.
@@ -76,7 +79,6 @@ function resetTrack(){
     tracks[i].startTime = "";
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
-    document.getElementById("lane" + i + "Time").innerHTML = "-.--- ms";
     //TODO clear 1st 2nd 3rd
   }
 };
