@@ -58,7 +58,7 @@ document.onkeyup = function(e){
   console.log(e.keyCode+ " = keycode pressed");
   // check if any track isRunning.
   for (let i = 0; i < tracks.length; i++) {
-    if (!tracks[i].isRunning) return false; //if any track is still running do not start new race.
+    if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
   }
 
   if(e.keyCode == 32){   // function run if spacebar is pressed.
