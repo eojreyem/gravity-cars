@@ -36,7 +36,7 @@ class Track {
         this.isRunning = false;
         //TODO display 1st 2nd 3rd...
         var time = (this.finishTime - this.startTime)/1000;
-        var time3dec = num.toFixed(3);
+        var time3dec = time.toFixed(3);
 
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
       }
