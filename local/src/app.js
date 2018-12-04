@@ -1,9 +1,9 @@
 const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
-  "solenoidPin":15,
-  "startBeamPins":[2,3,4],
-  "finishBeamPins":[17,27,22]
+  "solenoidPin":3,
+  "startBeamPins":[16,20,21],
+  "finishBeamPins":[25,8,7]
 }
 
 var tracks = [];
@@ -42,10 +42,6 @@ class Track {
       }
     });
   }
-}
-
-var trackQuery = function(track){
-  return track == this;
 }
 
 //initialize output pin for solenoid car release
