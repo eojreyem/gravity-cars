@@ -1,7 +1,7 @@
 const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
-  "solenoidPin":3,
+  "solenoidPin":5,
   "startBeamPins":[16,20,21],
   "finishBeamPins":[25,8,7]
 }
@@ -50,17 +50,19 @@ solenoid = new Gpio(config.solenoidPin, 'out');
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
   tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
+  console.log("track " +i+ " configured");
 }
 
 //Start Race when spacebar is pressed.
 document.onkeyup = function(e){
-
+  console.log(e.keyCode+ " = keycode pressed");
   // check if any track isRunning.
   for (let i = 0; i < tracks.length; i++) {
     if (!tracks[i].isRunning) return false; //if any track is still running do not start new race.
   }
 
   if(e.keyCode == 32){   // function run if spacebar is pressed.
+    console.log("Spacebar pressed");
     resetTrack();
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
@@ -70,6 +72,7 @@ document.onkeyup = function(e){
 
 function resetTrack(){
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
+    console.log("reset track "+i);
     tracks[i].startTime = "";
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
