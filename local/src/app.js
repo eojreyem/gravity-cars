@@ -1,7 +1,7 @@
 const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
-  "solenoidPin":5,
+  "solenoidPin":3,
   "startBeamPins":[16,20,21],
   "finishBeamPins":[25,8,7]
 }
@@ -76,7 +76,7 @@ function resetTrack(){
     tracks[i].startTime = "";
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
-    document.getElementById("lane"+ trackNum +"Time").innerHTML = "-.--- ms";
+    document.getElementById("lane"+ i +"Time").innerHTML = "-.--- ms";
     //TODO clear 1st 2nd 3rd
   }
 };
