@@ -72,6 +72,9 @@ document.onkeyup = function(e){
     document.getElementById("lane0Time").innerHTML = "-.--- ms";
     document.getElementById("lane1Time").innerHTML = "-.--- ms";
     document.getElementById("lane2Time").innerHTML = "-.--- ms";
+    document.getElementById("award0").src = "src/images/car.png";
+    document.getElementById("award1").src = "src/images/car.png";
+    document.getElementById("award2").src = "src/images/car.png";
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
     setTimeout(resetTrack, 5000); //timeout if race isn't completed after 5 sec.
