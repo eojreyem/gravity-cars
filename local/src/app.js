@@ -76,8 +76,7 @@ function resetTrack(){
     tracks[i].startTime = "";
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
-    var idString = "lane" + i + "Time";
-    document.getElementById(idString).innerHTML = "-.--- ms";
+    document.getElementById("lane" + i + "Time").innerHTML = "-.--- ms";
     //TODO clear 1st 2nd 3rd
   }
 };
