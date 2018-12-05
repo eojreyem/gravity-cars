@@ -51,10 +51,9 @@ class Track {
         var time = (this.finishTime - this.startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
-        for (let i = 0; i < tracks.length; i++) {
-          if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
-        }
-        endRace();
+        // for (let i = 0; i < tracks.length; i++) {
+        //   if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
+        // }
       }
     });
   }
@@ -79,14 +78,10 @@ document.onkeyup = function(e){
     console.log("Spacebar = START!!!");
     resetTrack();
     finishPlace = 1;
-    for (let i = 0; i < 3; i++) {
-      document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
-      document.getElementById("award"+i).src = "src/images/car.png";
-    }
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     isRacing = true;
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    setTimeout(resetTrack, 5000); //timeout if race isn't completed after 5 sec.
+    setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
   }
 }
 
@@ -102,6 +97,10 @@ function resetTrack(){
 
 function endRace(){
   isRacing = false;
+  for (let i = 0; i < 3; i++) {
+    document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
+    document.getElementById("award"+i).src = "src/images/car.png";
+  }
 };
 
 function offSolenoid() { //call back function to power off solenoid
