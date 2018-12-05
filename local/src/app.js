@@ -23,17 +23,18 @@ class Track {
       if (err) {
         throw err;
       }
-      console.log("start " + tracks.findIndex(track => track == this) + "beam = " + value);
-      if (value == true){
-        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "";
-      }else{
-        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/car.png";
+      if (isRacing == false){
+        if (value == true){
+          document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "";
+        }else{
+          document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/car.png";
+        }
       }
-
-
-      if (this.startTime === ""){ //don't overwrite
-        this.startTime = Date.now();
-        this.isRunning = true;
+      if (isRacing == true && value == 0){
+        if (this.startTime === ""){ //don't overwrite
+          this.startTime = Date.now();
+          this.isRunning = true;
+        }
       }
     });
 
@@ -45,14 +46,15 @@ class Track {
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
-
-        //TODO display 1st 2nd 3rd...
         document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
         finishPlace++;
         var time = (this.finishTime - this.startTime)/1000;
         var time3dec = time.toFixed(3);
-
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
+        for (let i = 0; i < tracks.length; i++) {
+          if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
+        }
+        endRace();
       }
     });
   }
@@ -70,22 +72,19 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 //Start Race when spacebar is pressed.
 document.onkeyup = function(e){
   console.log(e.keyCode+ " = keycode pressed");
-  // check if any track isRunning.
-  for (let i = 0; i < tracks.length; i++) {
-    if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
-  }
+  // TODO check if any track isRunning.
+
 
   if(e.keyCode == 32){   // function run if spacebar is pressed.
     console.log("Spacebar = START!!!");
     resetTrack();
     finishPlace = 1;
-    document.getElementById("lane0Time").innerHTML = "-.--- ms";
-    document.getElementById("lane1Time").innerHTML = "-.--- ms";
-    document.getElementById("lane2Time").innerHTML = "-.--- ms";
-    document.getElementById("award0").src = "src/images/car.png";
-    document.getElementById("award1").src = "src/images/car.png";
-    document.getElementById("award2").src = "src/images/car.png";
+    for (let i = 0; i < 3; i++) {
+      document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
+      document.getElementById("award"+i).src = "src/images/car.png";
+    }
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
+    isRacing = true;
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
     setTimeout(resetTrack, 5000); //timeout if race isn't completed after 5 sec.
   }
@@ -99,6 +98,10 @@ function resetTrack(){
     tracks[i].isRunning = false;
     //TODO clear 1st 2nd 3rd
   }
+};
+
+function endRace(){
+  isRacing = false;
 };
 
 function offSolenoid() { //call back function to power off solenoid
