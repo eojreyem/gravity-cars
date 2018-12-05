@@ -24,6 +24,13 @@ class Track {
         throw err;
       }
       console.log("start " + tracks.findIndex(track => track == this) + "beam = " + value);
+      if (value == true){
+        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/car.png";
+      }else{
+        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "";
+      }
+
+
       if (this.startTime === ""){ //don't overwrite
         this.startTime = Date.now();
         this.isRunning = true;
