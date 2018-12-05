@@ -8,6 +8,7 @@ const config = {
 
 var tracks = [];
 var finishPlace = 1;
+var isRacing = false;
 
 class Track {
   constructor(startPin, finishPin, onFinish) {
@@ -15,13 +16,14 @@ class Track {
     this.startPin = startPin;
     this.finishPin = finishPin;
 
-    this.startCtl = new Gpio(this.startPin, 'in', 'rising');
+    this.startCtl = new Gpio(this.startPin, 'in', 'both');
     this.finishCtl = new Gpio(this.finishPin, 'in', 'rising');
 
     this.startCtl.watch((err, value) => {
       if (err) {
         throw err;
       }
+      console.log("start " + tracks.findIndex(track => track == this)).src + "beam = " + value);
       if (this.startTime === ""){ //don't overwrite
         this.startTime = Date.now();
         this.isRunning = true;
@@ -32,6 +34,7 @@ class Track {
       if (err) {
         throw err;
       }
+      console.log("finish " + tracks.findIndex(track => track == this)).src + "beam = " + value);
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
