@@ -23,7 +23,7 @@ class Track {
       if (err) {
         throw err;
       }
-      console.log("start " + tracks.findIndex(track => track == this)).src + "beam = " + value);
+      console.log("start " + tracks.findIndex(track => track == this).src + "beam = " + value);
       if (this.startTime === ""){ //don't overwrite
         this.startTime = Date.now();
         this.isRunning = true;
@@ -34,7 +34,7 @@ class Track {
       if (err) {
         throw err;
       }
-      console.log("finish " + tracks.findIndex(track => track == this)).src + "beam = " + value);
+      console.log("finish " + tracks.findIndex(track => track == this).src + "beam = " + value);
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
