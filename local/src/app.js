@@ -83,12 +83,13 @@ document.onkeyup = function(e){
         console.log("Lane "+ i+" is racing!");
       }
     }
+
     console.log("Spacebar = START!!!");
     finishPlace = 1;
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
+    setTimeout(endRace, 5000); //timeout if race isn't completed after 5 sec.
   }
 }
 
