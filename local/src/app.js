@@ -22,34 +22,38 @@ class Track {
     this.startCtl.watch((err, value) => {
       if (err) {
         throw err;
+        console.log(err);
       }
-      if (startTime === ""){
-        if (value == 1){
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track.png";
-        }else{
+      if (startTime == ""){
+        if (value == 0){
           document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car.png";
+        }else{
+          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track.png";
         }
       }
-      // if (isRacing == true && value == 0){
-      //   if (this.startTime === ""){ //don't overwrite
-      //     this.startTime = Date.now();
-      //     this.isRunning = true;
-      //     console.log("Lane "+ tracks.findIndex(track => track == this)+" start time: " +this.startTime);
-      //   }
-      // }
+
+      if (startTime && value == 0){
+        if (this.startTime === ""){ //don't overwrite
+          //this.startTime = Date.now();
+          this.isRunning = true;
+          console.log("Lane "+ tracks.findIndex(track => track == this)+" is racing!");
+        }
+      }
     });
 
     this.finishCtl.watch((err, value) => {
       if (err) {
         throw err;
+        console.log(err);
       }
-      console.log("finish " + tracks.findIndex(track => track == this) + "beam = " + value);
-      if (this.finishTime === ""){ //don't overwrite
+      console.log("finish " + tracks.findIndex(track => track == this) + "beam rising trigger" + value);
+
+      if (this.finishTime == ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
+        console.log("lane "+ tracks.findIndex(track => track == this) + " done racing" );
         document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
         finishPlace++;
-        console.log(tracks.findIndex(track => track == this) + " Unique Finish, startTime = " + startTime);
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
@@ -77,9 +81,6 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 
 //Start Race when spacebar is pressed.
 document.onkeyup = function(e){
-  console.log(e.keyCode+ " = keycode pressed");
-  // TODO check if any track isRunning.
-
 
   if(e.keyCode == 32){   // function run if spacebar is pressed.
     console.log("Spacebar = START!!!");
@@ -104,7 +105,7 @@ function resetTrack(){
 
 function endRace(){
   console.log("END RACE");
-  //startTime = "";
+  startTime = "";
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
   //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
