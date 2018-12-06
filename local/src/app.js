@@ -56,8 +56,10 @@ class Track {
         var carsRunning = 0;
         for (let i = 0; i < tracks.length; i++) {
           carsRunning += tracks[i].isRunning;
-        }
-        if (carsRunning == 0) endRace();
+        };
+        if (carsRunning == 0){
+          endRace();
+        };
       }
     });
   }
@@ -85,7 +87,7 @@ document.onkeyup = function(e){
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    //setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
+    setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
   }
 }
 
