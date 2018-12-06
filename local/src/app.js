@@ -34,6 +34,7 @@ class Track {
         if (this.startTime === ""){ //don't overwrite
           this.startTime = Date.now();
           this.isRunning = true;
+          console.log("Lane "+ tracks.findIndex(track => track == this)+" start time: " +this.startTime);
         }
       }
     });
