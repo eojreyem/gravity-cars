@@ -1,4 +1,4 @@
-const Gpio = require('onoff').Gpio; // Import the onoff library
+track_with_car.pngconst Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
   "solenoidPin":3,
@@ -25,9 +25,9 @@ class Track {
       }
       if (isRacing == false){
         if (value == true){
-          document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "";
+          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track.png";
         }else{
-          document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/car.png";
+          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car.png";
         }
       }
       if (isRacing == true && value == 0){
@@ -46,7 +46,7 @@ class Track {
       if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
-        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
+        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
         finishPlace++;
         var time = (this.finishTime - this.startTime)/1000;
         var time3dec = time.toFixed(3);
@@ -99,7 +99,7 @@ function endRace(){
   isRacing = false;
   for (let i = 0; i < 3; i++) {
     document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
-    document.getElementById("award"+i).src = "src/images/car.png";
+    document.getElementById("award"+i).src = "src/images/track_with_car.png";
   }
 };
 
