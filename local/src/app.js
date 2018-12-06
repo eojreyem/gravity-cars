@@ -1,4 +1,4 @@
-track_with_car.pngconst Gpio = require('onoff').Gpio; // Import the onoff library
+const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
   "solenoidPin":3,
