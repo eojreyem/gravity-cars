@@ -8,7 +8,7 @@ const config = {
 
 var tracks = [];
 var finishPlace = 1;
-var isRacing = false;
+var startTime = "";
 
 class Track {
   constructor(startPin, finishPin, onFinish) {
@@ -23,20 +23,20 @@ class Track {
       if (err) {
         throw err;
       }
-      if (isRacing == false){
-        if (value == true){
+      if (startTime === ""){
+        if (value == 1){
           document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track.png";
         }else{
           document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car.png";
         }
       }
-      if (isRacing == true && value == 0){
-        if (this.startTime === ""){ //don't overwrite
-          this.startTime = Date.now();
-          this.isRunning = true;
-          console.log("Lane "+ tracks.findIndex(track => track == this)+" start time: " +this.startTime);
-        }
-      }
+      // if (isRacing == true && value == 0){
+      //   if (this.startTime === ""){ //don't overwrite
+      //     this.startTime = Date.now();
+      //     this.isRunning = true;
+      //     console.log("Lane "+ tracks.findIndex(track => track == this)+" start time: " +this.startTime);
+      //   }
+      // }
     });
 
     this.finishCtl.watch((err, value) => {
@@ -49,7 +49,7 @@ class Track {
         this.isRunning = false;
         document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
         finishPlace++;
-        var time = (this.finishTime - this.startTime)/1000;
+        var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
         // for (let i = 0; i < tracks.length; i++) {
@@ -80,9 +80,9 @@ document.onkeyup = function(e){
     resetTrack();
     finishPlace = 1;
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
-    isRacing = true;
+    startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
+    //setTimeout(endRace(), 5000); //timeout if race isn't completed after 5 sec.
   }
 }
 
@@ -97,7 +97,6 @@ function resetTrack(){
 };
 
 function endRace(){
-  isRacing = false;
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
   //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
