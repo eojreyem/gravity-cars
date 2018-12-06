@@ -82,9 +82,8 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 //Start Race when spacebar is pressed.
 document.onkeyup = function(e){
 
-  if(e.keyCode == 32){   // function run if spacebar is pressed.
+  if(e.keyCode == 32 && startTime == ""){   // function run if spacebar is pressed.
     console.log("Spacebar = START!!!");
-    resetTrack();
     finishPlace = 1;
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
@@ -93,19 +92,16 @@ document.onkeyup = function(e){
   }
 }
 
-function resetTrack(){
-  for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
-    console.log("reset track "+i);
-  //  tracks[i].startTime = "";
-    tracks[i].finishTime = "";
-    tracks[i].isRunning = false;
-    //TODO clear 1st 2nd 3rd
-  }
-};
 
 function endRace(){
   console.log("END RACE");
   startTime = "";
+  for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
+    console.log("reset track file"+i);
+    tracks[i].finishTime = "";
+    tracks[i].isRunning = false;
+    startTime = "";
+  }
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
   //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
