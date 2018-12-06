@@ -104,7 +104,7 @@ function resetTrack(){
 
 function endRace(){
   console.log("END RACE");
-  startTime = "";
+  //startTime = "";
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
   //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
