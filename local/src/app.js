@@ -79,7 +79,9 @@ document.onkeyup = function(e){
 
     for (let i = 0; i < tracks.length; i++) {
       tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
-      console.log("Lane "+ i+" is racing!");
+      if (tracks[i].isRunning){        
+        console.log("Lane "+ i+" is racing!");
+      }
     }
     console.log("Spacebar = START!!!");
     finishPlace = 1;
