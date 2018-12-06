@@ -52,9 +52,10 @@ class Track {
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
-        // for (let i = 0; i < tracks.length; i++) {
-        //   if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
-        // }
+        for (let i = 0; i < tracks.length; i++) {
+          if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
+        }
+        endRace();
       }
     });
   }
@@ -97,6 +98,7 @@ function resetTrack(){
 };
 
 function endRace(){
+  startTime = "";
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
   //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
