@@ -97,10 +97,10 @@ function resetTrack(){
 
 function endRace(){
   isRacing = false;
-  for (let i = 0; i < 3; i++) {
-    document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
-    document.getElementById("award"+i).src = "src/images/track_with_car.png";
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
+  //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
+  // }
 };
 
 function offSolenoid() { //call back function to power off solenoid
