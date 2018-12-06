@@ -41,7 +41,7 @@ class Track {
       }
       console.log("finish " + tracks.findIndex(track => track == this) + "beam rising trigger" + value);
 
-      if (this.finishTime === ""){ //don't overwrite
+      if (this.finishTime == ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
         console.log("lane "+ tracks.findIndex(track => track == this) + " done racing" );
@@ -103,10 +103,6 @@ function endRace(){
     tracks[i].isRunning = false;
     startTime = "";
   }
-  // for (let i = 0; i < 3; i++) {
-  //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
-  //   document.getElementById("lane"+i).src = "src/images/track_with_car.png";
-  // }
 };
 
 function offSolenoid() { //call back function to power off solenoid
