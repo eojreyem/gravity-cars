@@ -24,7 +24,7 @@ class Track {
         throw err;
         console.log(err);
       }
-      if (startTime == ""){
+      if (startTime === ""){
         if (value == 0){
           document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car.png";
         }else{
@@ -41,7 +41,7 @@ class Track {
       }
       console.log("finish " + tracks.findIndex(track => track == this) + "beam rising trigger" + value);
 
-      if (this.finishTime == ""){ //don't overwrite
+      if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
         console.log("lane "+ tracks.findIndex(track => track == this) + " done racing" );
@@ -79,7 +79,7 @@ document.onkeyup = function(e){
 
     for (let i = 0; i < tracks.length; i++) {
       tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
-      if (tracks[i].isRunning){        
+      if (tracks[i].isRunning){
         console.log("Lane "+ i+" is racing!");
       }
     }
