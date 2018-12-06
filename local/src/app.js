@@ -103,6 +103,7 @@ function resetTrack(){
 };
 
 function endRace(){
+  console.log("END RACE");
   startTime = "";
   // for (let i = 0; i < 3; i++) {
   //   document.getElementById("lane"+i+"Time").innerHTML = "-.--- ms";
