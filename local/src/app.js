@@ -85,7 +85,6 @@ document.onkeyup = function(e){
     }
 
     console.log("Spacebar = START!!!");
-    finishPlace = 1;
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
@@ -97,6 +96,7 @@ document.onkeyup = function(e){
 function endRace(){
   console.log("END RACE");
   startTime = "";
+  finishPlace = 1;
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
     console.log("reset track file"+i);
     tracks[i].finishTime = "";
