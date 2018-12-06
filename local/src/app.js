@@ -49,6 +49,7 @@ class Track {
         this.isRunning = false;
         document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
         finishPlace++;
+        console.log(tracks.findIndex(track => track == this) + " Unique Finish, startTime = " + startTime);
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
@@ -94,7 +95,7 @@ document.onkeyup = function(e){
 function resetTrack(){
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
     console.log("reset track "+i);
-    tracks[i].startTime = "";
+  //  tracks[i].startTime = "";
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
     //TODO clear 1st 2nd 3rd
