@@ -32,13 +32,6 @@ class Track {
         }
       }
 
-      if (startTime && value == 0){
-        if (this.startTime === ""){ //don't overwrite
-          //this.startTime = Date.now();
-          this.isRunning = true;
-          console.log("Lane "+ tracks.findIndex(track => track == this)+" is racing!");
-        }
-      }
     });
 
     this.finishCtl.watch((err, value) => {
@@ -83,6 +76,11 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 document.onkeyup = function(e){
 
   if(e.keyCode == 32 && startTime == ""){   // function run if spacebar is pressed.
+
+    for (let i = 0; i < tracks.length; i++) {
+      tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
+      console.log("Lane "+ i+" is racing!");
+    }
     console.log("Spacebar = START!!!");
     finishPlace = 1;
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
