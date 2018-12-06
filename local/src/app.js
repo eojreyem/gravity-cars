@@ -52,10 +52,12 @@ class Track {
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
+        //check if any cars are running?
+        var carsRunning = 0;
         for (let i = 0; i < tracks.length; i++) {
-          if (tracks[i].isRunning) return false; //if any track is still running do not start new race.
+          carsRunning += tracks[i].isRunning;
         }
-        endRace();
+        if (carsRunning == 0) endRace();
       }
     });
   }
