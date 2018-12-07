@@ -15,7 +15,6 @@ class Track {
     this.isRunning = false;
     this.startPin = startPin;
     this.finishPin = finishPin;
-
     this.startCtl = new Gpio(this.startPin, 'in', 'both');
     this.finishCtl = new Gpio(this.finishPin, 'in', 'rising');
 
@@ -39,12 +38,12 @@ class Track {
         throw err;
         console.log(err);
       }
-      console.log("finish " + tracks.findIndex(track => track == this) + "beam rising trigger" + value);
+      console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
-      if (this.finishTime == ""){ //don't overwrite
+      if (this.finishTime === ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
-        console.log("lane "+ tracks.findIndex(track => track == this) + " done racing" );
+        console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
         document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
         finishPlace++;
         var time = (this.finishTime - startTime)/1000;
@@ -65,6 +64,7 @@ class Track {
 
 //initialize output pin for solenoid car release
 solenoid = new Gpio(config.solenoidPin, 'out');
+console.log("solenoid configured");
 
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
@@ -81,17 +81,16 @@ document.onkeyup = function(e){
       tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
       if (tracks[i].isRunning){
         console.log("Lane "+ i+" is racing!");
+        //TODO Error no car!
       }
     }
-
     console.log("Spacebar = START!!!");
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    setTimeout(endRace, 5000); //timeout if race isn't completed after 5 sec.
+    //setTimeout(endRace, 5000); //timeout after 5 sec.
   }
 }
-
 
 function endRace(){
   console.log("END RACE");
@@ -101,7 +100,6 @@ function endRace(){
     console.log("reset track file"+i);
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
-    startTime = "";
   }
 };
 
