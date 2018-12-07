@@ -41,23 +41,15 @@ class Track {
       }
       console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
-      if (this.finishTime == ""){ //don't overwrite
-        this.finishTime = Date.now();
-        this.isRunning = false;
+      if (this.finishTime == "" && this.isRunning){ //unique finish on car that was racing.
         console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
-        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png";
+        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png"
+        this.isRunning = false;
         finishPlace++;
+        this.finishTime = Date.now();
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
-        //check if any cars are running?
-        // var carsRunning = 0;
-        // for (let i = 0; i < tracks.length; i++) {
-        //   carsRunning += tracks[i].isRunning;
-        // };
-        // if (carsRunning == 0){
-        //   endRace();
-        // };
       }
     });
   }
