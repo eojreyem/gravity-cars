@@ -33,11 +33,7 @@ class Track {
         }
       }
       if (startTime != "" && value ==1){
-        if (this.startTime == ""){
-          this.startTime = Date.now();
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track0.png";
-        }
-
+        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track0.png";
       }
 
     });
@@ -55,7 +51,7 @@ class Track {
         this.isRunning = false;
         finishPlace++;
         this.finishTime = Date.now();
-        var time = (this.finishTime - this.startTime)/1000;
+        var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
       }
