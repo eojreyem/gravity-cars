@@ -69,19 +69,22 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 document.onkeyup = function(e){
 
   if(e.keyCode == 32 && startTime == ""){   // function run if spacebar is pressed.
-
+    var numRunning = 0;
     for (let i = 0; i < tracks.length; i++) {
       tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
       if (tracks[i].isRunning){
         console.log("Lane "+ i+" is racing!");
+        numRunning++;
         //TODO Error no car!
       }
     }
-    console.log("Spacebar = START!!!");
-    solenoid.writeSync(1); //set pin state to 1(power solenoid)
-    startTime = Date.now();
-    setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    setTimeout(endRace, 5000); //timeout after 5 sec.
+    if (numRunning >0){
+      console.log("Spacebar = START!!!");
+      solenoid.writeSync(1); //set pin state to 1(power solenoid)
+      startTime = Date.now();
+      setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
+      setTimeout(endRace, 5000); //timeout after 5 sec.
+    }
   }
 }
 
