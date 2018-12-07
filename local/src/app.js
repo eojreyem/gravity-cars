@@ -17,6 +17,7 @@ class Track {
     this.finishPin = finishPin;
     this.startCtl = new Gpio(this.startPin, 'in', 'both');
     this.finishCtl = new Gpio(this.finishPin, 'in', 'rising');
+    this.finishTime = "";
 
     this.startCtl.watch((err, value) => {
       if (err) {
