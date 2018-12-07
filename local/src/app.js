@@ -51,13 +51,13 @@ class Track {
         var time3dec = time.toFixed(3);
         document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
         //check if any cars are running?
-        var carsRunning = 0;
-        for (let i = 0; i < tracks.length; i++) {
-          carsRunning += tracks[i].isRunning;
-        };
-        if (carsRunning == 0){
-          endRace();
-        };
+        // var carsRunning = 0;
+        // for (let i = 0; i < tracks.length; i++) {
+        //   carsRunning += tracks[i].isRunning;
+        // };
+        // if (carsRunning == 0){
+        //   endRace();
+        // };
       }
     });
   }
@@ -89,7 +89,7 @@ document.onkeyup = function(e){
     solenoid.writeSync(1); //set pin state to 1(power solenoid)
     startTime = Date.now();
     setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-    //setTimeout(endRace, 5000); //timeout after 5 sec.
+    setTimeout(endRace, 5000); //timeout after 5 sec.
   }
 }
 
