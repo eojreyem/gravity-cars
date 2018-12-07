@@ -40,7 +40,7 @@ class Track {
       }
       console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
-      if (this.finishTime === ""){ //don't overwrite
+      if (this.finishTime == ""){ //don't overwrite
         this.finishTime = Date.now();
         this.isRunning = false;
         console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
