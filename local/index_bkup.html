@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"></meta>
+  <head>
+    <title>Gateway Raceway</title>
+    <script src="./src/app.js"></script>
+    <style>
+    .column {
+        float: left;
+        width: 33.33%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .timefont {
+        font-size: 50px;
+        color: red;
+    }
+    .trackimage {
+        width: 33.3vw;
+    }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="row">
+        <div class="column"><img src="src/images/flags.jpg" alt="flags"></div>
+        <div class="column"><h1>Gateway Raceway</h1></div>
+        <div class="column"><img src="src/images/flags.jpg" alt="flags"></div>
+      </div>
+
+    </div>
+
+      <div class="row">
+        <div class="column"><p class="timefont" id="lane2Time">-.--- s</p></div>
+        <div class="column"><p class="timefont" id="lane1Time">-.--- s</p></div>
+        <div class="column"><p class="timefont" id="lane0Time">-.--- s</p></div>
+      </div>
+      <div class="row">
+        <div class="column"><img class="trackimage" src="src/images/empty_track.png" alt="Lane 3 Empty" id="lane2"></div>
+        <div class="column"><img class="trackimage" src="src/images/empty_track.png" alt="Lane 2 Empty" id="lane1"></div>
+        <div class="column"><img class="trackimage" src="src/images/empty_track.png" alt="Lane 1 Empty" id="lane0"></div>
+      </div>
+
+  </body>
+</html>

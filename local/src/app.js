@@ -26,9 +26,9 @@ class Track {
       }
       if (startTime === ""){
         if (value == 0){
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car.png";
+          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car0.png";
         }else{
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track.png";
+          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track0.png";
         }
       }
 
@@ -43,7 +43,7 @@ class Track {
 
       if (this.finishTime == "" && this.isRunning){ //unique finish on car that was racing.
         console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
-        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_award"+finishPlace+ ".png"
+        document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
         this.isRunning = false;
         finishPlace++;
         this.finishTime = Date.now();
@@ -80,6 +80,12 @@ document.onkeyup = function(e){
     }
     if (numRunning >0){
       console.log("Spacebar = START!!!");
+      document.getElementById("award2").src = "";
+      document.getElementById("award1").src = "";
+      document.getElementById("award0").src = "";
+      document.getElementById("lane0Time").innerHTML = "-.--- s";
+      document.getElementById("lane1Time").innerHTML = "-.--- s";
+      document.getElementById("lane2Time").innerHTML = "-.--- s";
       solenoid.writeSync(1); //set pin state to 1(power solenoid)
       startTime = Date.now();
       setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
