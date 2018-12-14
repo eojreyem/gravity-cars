@@ -46,6 +46,7 @@ class Track {
       console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
       if (this.finishTime == "" && this.isRunning){ //unique finish on car that was racing.
+        document.getElementById("goText").innerHTML = "";
         console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
         document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
         this.isRunning = false;
@@ -87,6 +88,7 @@ document.onkeyup = function(e){
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
+      document.getElementById("goText").innerHTML = "GO!!!";
       document.getElementById("lane0Time").innerHTML = "0.000 s";
       document.getElementById("lane1Time").innerHTML = "0.000 s";
       document.getElementById("lane2Time").innerHTML = "0.000 s";
