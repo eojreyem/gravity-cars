@@ -87,9 +87,9 @@ document.onkeyup = function(e){
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
-      document.getElementById("lane0Time").innerHTML = "-.--- s";
-      document.getElementById("lane1Time").innerHTML = "-.--- s";
-      document.getElementById("lane2Time").innerHTML = "-.--- s";
+      document.getElementById("lane0Time").innerHTML = "0.000 s";
+      document.getElementById("lane1Time").innerHTML = "0.000 s";
+      document.getElementById("lane2Time").innerHTML = "0.000 s";
       solenoid.writeSync(1); //set pin state to 1(power solenoid)
       startTime = Date.now();
       setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
