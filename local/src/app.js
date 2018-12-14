@@ -27,13 +27,13 @@ class Track {
       }
       if (startTime === ""){
         if (value == 0){
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/track_with_car0.png";
+          document.getElementById("car"+ tracks.findIndex(track => track == this)).src = "src/images/car.png";
         }else{
-          document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track0.png";
+          document.getElementById("car"+ tracks.findIndex(track => track == this)).src = "";
         }
       }
       if (startTime != "" && value ==1){
-        document.getElementById("lane"+ tracks.findIndex(track => track == this)).src = "src/images/empty_track0.png";
+        document.getElementById("car"+ tracks.findIndex(track => track == this)).src = "";
       }
 
     });

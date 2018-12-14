@@ -5,33 +5,72 @@
     <title>Gateway Raceway</title>
     <script src="./src/app.js"></script>
     <style>
-    .column {
-        float: left;
-        width: 25%;
-    }
 
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-    .timefont {
+    .clockTime1 {
         font-size: 50px;
         color: red;
+        top: 230px;
+        left: 50px;
+        position: fixed;
     }
-    .trackimage {
-        height: 25vh;
+    .clockTime2 {
+        font-size: 50px;
+        color: red;
+        top: 230px;
+        left: 450px;
+        position: fixed;
     }
-    .award{
-        height: 25vh;
+    .clockTime3 {
+        font-size: 50px;
+        color: red;
+        top: 230px;
+        left: 800px;
+        position: fixed;
+    }
+
+    .startCar1 {
+      position: fixed;
+      top: 1100px;
+      left: 60px;
+    }
+    .startCar2 {
+      position: fixed;
+      top: 1100px;
+      left: 380px;
+    }
+    .startCar3 {
+      position: fixed;
+      top: 1100px;
+      left: 760px;
+    }
+
+    .bg {
+      /* The image used */
+      background-image: url("src/images/background.png");
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      /* background-position: center; */
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
 
     </style>
   </head>
-  <body>
-    <div class="row">
+  <body class="bg" >
+
+    <p class="clockTime1" id="lane0Time" >0.000 s</p>
+    <p class="clockTime2" id="lane1Time">0.000 s</p>
+    <p class="clockTime3" id="lane2Time">0.000 s</p>
+    <img class="startCar1" src="" id="car1">
+    <img class="startCar2" src="" id="car2">
+    <img class="startCar3" src="" id="car3">
+
+
+    <!-- <div class="row">
       <div class="column">
         <img src="src/images/flags.jpg" alt="flags">
       </div>
@@ -85,7 +124,7 @@
         </div>
       </div>
 
-
+ -->
 
   </body>
 </html>
