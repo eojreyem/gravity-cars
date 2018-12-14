@@ -54,7 +54,7 @@ class Track {
         this.finishTime = Date.now();
         var time = (this.finishTime - startTime)/1000;
         var time3dec = time.toFixed(3);
-        document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec + " s";
+        document.getElementById("lane"+ tracks.findIndex(track => track == this) +"Time").innerHTML = time3dec;
       }
     });
   }

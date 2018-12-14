@@ -11,24 +11,34 @@
       width: 33.33%;
     }
 
+    .rowTime {
+      height: 25vh;
+    }
+
+    .rowAward {
+      height: 50vh;
+    }
+
+    .rowCar {
+      height: 25vh;
+    }
+
     .clockTime {
-        font-size: 70px;
+        font-size: 90px;
         color: red;
-        top: 150px;
+        top: 110px;
         left: 70px;
         position: relative;
     }
 
 
     .award {
-      top: 150px;
       left: 40px;
       width: 25vw;
       position: relative;
     }
 
     .startCar {
-      top: 360px;
       left: 60px;
       position: relative;
       width: 20vw;
@@ -62,22 +72,46 @@
     </style>
   </head>
   <body class="bg" >
-    `<div class="row">
+    `<div class="rowTime">
       <div class="column">
-        <p class="clockTime" id="lane0Time" >0.000 s</p>
-          <img class="award" src="" id="award0">
-            <img class="startCar" src="" id="car0">
+        <p class="clockTime" id="lane0Time" >0.000</p>
       </div>
       <div class="column">
-        <p class="clockTime" id="lane1Time">0.000 s</p>
-          <img class="award" src="" id="award1">
-            <img class="startCar" src="" id="car1">
+        <p class="clockTime" id="lane1Time">0.000</p>
 
       </div>
       <div class="column">
-        <p class="clockTime" id="lane2Time">0.000 s</p>
-          <img class="award" src="" id="award2">
-            <img class="startCar" src="" id="car2">
+        <p class="clockTime" id="lane2Time">0.000</p>
+
+      </div>
+    </div>
+
+    <div class="rowAward">
+      <div class="column">
+        <img class="award" src="" id="award0">
+
+      </div>
+      <div class="column">
+        <img class="award" src="" id="award1">
+
+      </div>
+      <div class="column">
+        <img class="award" src="" id="award2">
+
+      </div>
+    </div>
+
+    <div class="rowCar">
+      <div class="column">
+          <img class="startCar" src="" id="car0">
+
+      </div>
+      <div class="column">
+          <img class="startCar" src="" id="car1">
+
+      </div>
+      <div class="column">
+          <img class="startCar" src="" id="car2">
 
       </div>
     </div>
