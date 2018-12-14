@@ -2,8 +2,8 @@ const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
   "solenoidPin":3,
-  "startBeamPins":[16,20,21],
-  "finishBeamPins":[25,8,7]
+  "startBeamPins":[21,20,16],
+  "finishBeamPins":[7,8,25]
 }
 
 var tracks = [];
