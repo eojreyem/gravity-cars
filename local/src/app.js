@@ -102,6 +102,7 @@ document.onkeyup = function(e){
 
 function endRace(){
   console.log("END RACE");
+  document.getElementById("goText").innerHTML = "";
   startTime = "";
   finishPlace = 1;
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
