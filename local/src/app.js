@@ -1,7 +1,9 @@
 const Gpio = require('onoff').Gpio; // Import the onoff library
 
 const config = {
-  "solenoidPin":3,
+  "solenoidPin":27,
+  "startbtnPin":23,
+  "startbtnLEDPin":22,
   "startBeamPins":[21,20,16],
   "finishBeamPins":[7,8,25]
 }
@@ -64,6 +66,11 @@ class Track {
 solenoid = new Gpio(config.solenoidPin, 'out');
 console.log("solenoid configured");
 
+//initialize pins for start button
+startBtn = new Gpio(config.startbtnPin, 'in');
+startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
+console.log("start Button configured");
+
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
   tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
@@ -72,7 +79,6 @@ for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for ea
 
 //Start Race when spacebar is pressed.
 document.onkeyup = function(e){
-
   if(e.keyCode == 32 && startTime == ""){   // function run if spacebar is pressed.
     var numRunning = 0;
     for (let i = 0; i < tracks.length; i++) {
