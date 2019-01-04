@@ -67,9 +67,42 @@ solenoid = new Gpio(config.solenoidPin, 'out');
 console.log("solenoid configured");
 
 //initialize pins for start button
-startBtn = new Gpio(config.startbtnPin, 'in');
+startBtn = new Gpio(config.startbtnPin, 'in', 'rising', {debounceTimeout: 10});
 startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
 console.log("start Button configured");
+
+startBtn.watch((err, value) => {
+  if (err) {
+    throw err;
+  }
+  if(startTime == ""){   // function run if startBtn is pressed.
+    var numRunning = 0;
+    for (let i = 0; i < tracks.length; i++) {
+      tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
+      if (tracks[i].isRunning){
+        console.log("Lane "+ i+" is racing!");
+        numRunning++;
+        //TODO Error no car!
+      }
+    }
+    if (numRunning >0){
+      console.log("button = START!!!");
+      startBtnLED.writeSync(0); //set pin state to 0(LED off)
+      document.getElementById("award2").src = "";
+      document.getElementById("award1").src = "";
+      document.getElementById("award0").src = "";
+      document.getElementById("goText").innerHTML = "GO!!!";
+      document.getElementById("lane0Time").innerHTML = "0.000";
+      document.getElementById("lane1Time").innerHTML = "0.000";
+      document.getElementById("lane2Time").innerHTML = "0.000";
+      solenoid.writeSync(1); //set pin state to 1(power solenoid)
+      startTime = Date.now();
+      setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
+      setTimeout(endRace, 5000); //timeout after 5 sec.
+    }
+  }
+});
+
 
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
@@ -91,6 +124,7 @@ document.onkeyup = function(e){
     }
     if (numRunning >0){
       console.log("Spacebar = START!!!");
+      startBtnLED.writeSync(0); //set pin state to 0(LED off)
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
@@ -109,6 +143,7 @@ document.onkeyup = function(e){
 function endRace(){
   console.log("END RACE");
   document.getElementById("goText").innerHTML = "";
+  startBtnLED.writeSync(1); //set pin state to 1(LED on)
   startTime = "";
   finishPlace = 1;
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
@@ -125,5 +160,7 @@ function offSolenoid() { //call back function to power off solenoid
 process.on('SIGINT', function () { // Listen to the event triggered on CTRL+C
   Solenoid.writeSync(0); //  Cleanly close the GPIO pin before exiting
   solenoid.unexport();
+  startBtn.unexport();
+  startBtnLED.unexport();
   process.exit();
 });
