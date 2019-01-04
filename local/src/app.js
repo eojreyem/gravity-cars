@@ -67,7 +67,7 @@ solenoid = new Gpio(config.solenoidPin, 'out');
 console.log("solenoid configured");
 
 //initialize pins for start button
-startBtn = new Gpio(config.startbtnPin, 'in', 'rising', {debounceTimeout: 10});
+startBtn = new Gpio(config.startbtnPin, 'in', 'falling', {debounceTimeout: 10});
 startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
 console.log("start Button configured");
 
@@ -105,6 +105,7 @@ startBtn.watch((err, value) => {
 
 
 //initialize all tracks per config json
+//TODO REMOVE SPACEBAR CODE
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
   tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
   console.log("track " +i+ " configured");
