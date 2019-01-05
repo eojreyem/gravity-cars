@@ -67,7 +67,7 @@ solenoid = new Gpio(config.solenoidPin, 'out');
 console.log("solenoid configured");
 
 //initialize pins for start button
-startBtn = new Gpio(config.startbtnPin, 'in', 'falling', {debounceTimeout: 10});
+startBtn = new Gpio(config.startbtnPin, 'in', 'rising', {debounceTimeout: 10});
 startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
 console.log("start Button configured");
 
