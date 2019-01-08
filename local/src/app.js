@@ -71,18 +71,25 @@ startBtn = new Gpio(config.startbtnPin, 'in', 'rising', {debounceTimeout: 10});
 startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
 console.log("start Button configured");
 
+//initialize all tracks per config json
+for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
+  tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
+  console.log("track " +i+ " configured");
+}
+
+//When start button is pressed ...
 startBtn.watch((err, value) => {
   if (err) {
     throw err;
   }
-  if(startTime == ""){   // function run if startBtn is pressed.
+  if(startTime == ""){
     var numRunning = 0;
+    //check if any cars are present and ready for racing
     for (let i = 0; i < tracks.length; i++) {
-      tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
+      tracks[i].isRunning = !tracks[i].startCtl.readSync(1);
       if (tracks[i].isRunning){
         console.log("Lane "+ i+" is racing!");
         numRunning++;
-        //TODO Error no car!
       }
     }
     if (numRunning >0){
@@ -92,6 +99,7 @@ startBtn.watch((err, value) => {
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
       document.getElementById("goText").innerHTML = "GO!!!";
+      setTimeout(goTextOff, 2000); //turn off message after 2 sec.
       document.getElementById("lane0Time").innerHTML = "0.000";
       document.getElementById("lane1Time").innerHTML = "0.000";
       document.getElementById("lane2Time").innerHTML = "0.000";
@@ -99,47 +107,12 @@ startBtn.watch((err, value) => {
       startTime = Date.now();
       setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
       setTimeout(endRace, 5000); //timeout after 5 sec.
+    }else {
+      document.getElementById("goText").innerHTML = "No Cars.";
+      setTimeout(noCarsOff, 2000); //turn off message after 2 sec.
     }
   }
 });
-
-
-//initialize all tracks per config json
-//TODO REMOVE SPACEBAR CODE
-for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
-  tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
-  console.log("track " +i+ " configured");
-}
-
-//Start Race when spacebar is pressed.
-document.onkeyup = function(e){
-  if(e.keyCode == 32 && startTime == ""){   // function run if spacebar is pressed.
-    var numRunning = 0;
-    for (let i = 0; i < tracks.length; i++) {
-      tracks[i].isRunning = !tracks[i].startCtl.readSync(1); //check if car is present and racing
-      if (tracks[i].isRunning){
-        console.log("Lane "+ i+" is racing!");
-        numRunning++;
-        //TODO Error no car!
-      }
-    }
-    if (numRunning >0){
-      console.log("Spacebar = START!!!");
-      startBtnLED.writeSync(0); //set pin state to 0(LED off)
-      document.getElementById("award2").src = "";
-      document.getElementById("award1").src = "";
-      document.getElementById("award0").src = "";
-      document.getElementById("goText").innerHTML = "GO!!!";
-      document.getElementById("lane0Time").innerHTML = "0.000";
-      document.getElementById("lane1Time").innerHTML = "0.000";
-      document.getElementById("lane2Time").innerHTML = "0.000";
-      solenoid.writeSync(1); //set pin state to 1(power solenoid)
-      startTime = Date.now();
-      setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
-      setTimeout(endRace, 5000); //timeout after 5 sec.
-    }
-  }
-}
 
 function endRace(){
   console.log("END RACE");
@@ -153,6 +126,10 @@ function endRace(){
     tracks[i].isRunning = false;
   }
 };
+
+function goTextOff() {
+  document.getElementById("goText").innerHTML = "";
+}
 
 function offSolenoid() { //call back function to power off solenoid
   solenoid.writeSync(0); // Turn solenoid relay off
