@@ -98,7 +98,7 @@ startBtn.watch((err, value) => {
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
-      document.getElementById("statusText").color = "green";
+      document.getElementById("statusText").style.color = "green";
       document.getElementById("statusText").innerHTML = "Go Go GO!!!";
       setTimeout(statusTextOff, 1500); //turn off message after 5 sec.
       document.getElementById("lane0Time").innerHTML = "0.000";
@@ -109,7 +109,7 @@ startBtn.watch((err, value) => {
       setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
       setTimeout(endRace, 5000); //timeout after 5 sec.
     }else {
-    document.getElementById("statusText").color = "white";
+    document.getElementById("statusText").style.color = "white";
       document.getElementById("statusText").innerHTML = "No Cars.";
       setTimeout(statusTextOff, 1500); //turn off message after 2 sec.
     }
