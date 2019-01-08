@@ -48,7 +48,7 @@ class Track {
       console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
       if (this.finishTime == "" && this.isRunning){ //unique finish on car that was racing.
-        document.getElementById("goText").innerHTML = "";
+        document.getElementById("statusText").innerHTML = "";
         console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
         document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
         this.isRunning = false;
@@ -98,8 +98,8 @@ startBtn.watch((err, value) => {
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
       document.getElementById("award0").src = "";
-      document.getElementById("goText").innerHTML = "GO!!!";
-      setTimeout(goTextOff, 2000); //turn off message after 2 sec.
+      document.getElementById("statusText").innerHTML = "GO!!!";
+      setTimeout(statusTextOff, 1500); //turn off message after 2 sec.
       document.getElementById("lane0Time").innerHTML = "0.000";
       document.getElementById("lane1Time").innerHTML = "0.000";
       document.getElementById("lane2Time").innerHTML = "0.000";
@@ -108,15 +108,15 @@ startBtn.watch((err, value) => {
       setTimeout(offSolenoid, 1000); //release solenoid after 1 seconds
       setTimeout(endRace, 5000); //timeout after 5 sec.
     }else {
-      document.getElementById("goText").innerHTML = "No Cars.";
-      setTimeout(goTextOff, 2000); //turn off message after 2 sec.
+      document.getElementById("statusText").innerHTML = "No Cars.";
+      setTimeout(statusTextOff, 1500); //turn off message after 2 sec.
     }
   }
 });
 
 function endRace(){
   console.log("END RACE");
-  document.getElementById("goText").innerHTML = "";
+  document.getElementById("statusText").innerHTML = "";
   startBtnLED.writeSync(1); //set pin state to 1(LED on)
   startTime = "";
   finishPlace = 1;
@@ -127,8 +127,8 @@ function endRace(){
   }
 };
 
-function goTextOff() {
-  document.getElementById("goText").innerHTML = "";
+function statusTextOff() {
+  document.getElementById("statusText").innerHTML = "";
 }
 
 function offSolenoid() { //call back function to power off solenoid
