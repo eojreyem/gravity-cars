@@ -109,7 +109,7 @@ startBtn.watch((err, value) => {
       setTimeout(endRace, 5000); //timeout after 5 sec.
     }else {
       document.getElementById("goText").innerHTML = "No Cars.";
-      setTimeout(noCarsOff, 2000); //turn off message after 2 sec.
+      setTimeout(goTextOff, 2000); //turn off message after 2 sec.
     }
   }
 });
