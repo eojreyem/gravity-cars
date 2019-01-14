@@ -45,11 +45,11 @@ class Track {
         throw err;
         console.log(err);
       }
-      console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
+      //console.log("finish beam triggered on lane " + tracks.findIndex(track => track == this));
 
       if (this.finishTime == "" && this.isRunning){ //unique finish on car that was racing.
         document.getElementById("statusText").innerHTML = "";
-        console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
+        //console.log("lane "+ tracks.findIndex(track => track == this) + " Finish!" );
         document.getElementById("award"+ tracks.findIndex(track => track == this)).src = "src/images/"+finishPlace+ "award.png";
         this.isRunning = false;
         finishPlace++;
@@ -64,17 +64,18 @@ class Track {
 
 //initialize output pin for solenoid car release
 solenoid = new Gpio(config.solenoidPin, 'out');
-console.log("solenoid configured");
+//console.log("solenoid configured");
 
 //initialize pins for start button
 startBtn = new Gpio(config.startbtnPin, 'in', 'rising', {debounceTimeout: 10});
 startBtnLED = new Gpio(config.startbtnLEDPin, 'out');
-console.log("start Button configured");
+startBtnLED.writeSync(1); //set pin state to 1(LED on)
+//console.log("start Button configured");
 
 //initialize all tracks per config json
 for (let i = 0; i < config.startBeamPins.length; i++) {  // create tracks for each startBeamPins.
   tracks[i] = new Track(config.startBeamPins[i], config.finishBeamPins[i]);
-  console.log("track " +i+ " configured");
+  //console.log("track " +i+ " configured");
 }
 
 //When start button is pressed ...
@@ -88,12 +89,11 @@ startBtn.watch((err, value) => {
     for (let i = 0; i < tracks.length; i++) {
       tracks[i].isRunning = !tracks[i].startCtl.readSync(1);
       if (tracks[i].isRunning){
-        console.log("Lane "+ i+" is racing!");
+        //console.log("Lane "+ i+" is racing!");
         numRunning++;
       }
     }
     if (numRunning >0){
-      console.log("button = START!!!");
       startBtnLED.writeSync(0); //set pin state to 0(LED off)
       document.getElementById("award2").src = "";
       document.getElementById("award1").src = "";
@@ -117,13 +117,12 @@ startBtn.watch((err, value) => {
 });
 
 function endRace(){
-  console.log("END RACE");
   document.getElementById("statusText").innerHTML = "";
   startBtnLED.writeSync(1); //set pin state to 1(LED on)
   startTime = "";
   finishPlace = 1;
   for (let i = 0; i < config.startBeamPins.length; i++) {  // clear race data
-    console.log("reset track file"+i);
+    //console.log("reset track file"+i);
     tracks[i].finishTime = "";
     tracks[i].isRunning = false;
   }
